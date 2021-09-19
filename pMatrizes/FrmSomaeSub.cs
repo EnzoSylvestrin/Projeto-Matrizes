@@ -724,16 +724,21 @@ namespace WindowsFormsApplication1
         #region leave
         private void txtForm_Leave(object sender, EventArgs e)
         {
-            string[] res1 = txtForm.Text.Split(new char[] { 'i' });
-            string[] res2 = txtForm.Text.Split(new char[] { 'j' });
-
-            if (res1[0].IndexOf(mult) == -1 && res1[0].IndexOf(div) == -1 && res1[0].IndexOf(soma) == -1 && res1[0].IndexOf(sub) == -1 && res1[0] != "")
+            if (txtForm.Text.IndexOf('i') > -1)
             {
-                txtForm.Text = res1[0] + "*" + "i" + res1[1];
+                string[] res1 = txtForm.Text.Split(new char[] { 'i' });
+                if (res1[0].IndexOf(mult) == -1 && res1[0].IndexOf(div) == -1 && res1[0].IndexOf(soma) == -1 && res1[0].IndexOf(sub) == -1 && res1[0] != "")
+                {
+                    txtForm.Text = res1[0] + "*" + "i" + res1[1];
+                }
             }
-            if (res2[0].IndexOf(mult) == -1 && res2[0].IndexOf(div) == -1 && res2[0].IndexOf(soma) == -1 && res2[0].IndexOf(sub) == -1 && res2[0] != "")
+            if (txtForm.Text.IndexOf('j') > -1)
             {
-                txtForm.Text = res2[0] + "*" + "j" + res2[1];
+                string[] res2 = txtForm.Text.Split(new char[] { 'j' });
+                if (res2[0].IndexOf(mult) == -1 && res2[0].IndexOf(div) == -1 && res2[0].IndexOf(soma) == -1 && res2[0].IndexOf(sub) == -1 && res2[0] != "")
+                {
+                    txtForm.Text = res2[0] + "*" + "j" + res2[1];
+                }
             }
         }
         #endregion
