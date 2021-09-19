@@ -181,7 +181,6 @@
             this.txtForm.Size = new System.Drawing.Size(63, 20);
             this.txtForm.TabIndex = 24;
             this.txtForm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtForm_KeyDown);
-            this.txtForm.Leave += new System.EventHandler(this.txtForm_Leave);
             // 
             // errinho
             // 

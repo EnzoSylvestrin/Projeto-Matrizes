@@ -84,6 +84,7 @@ namespace WindowsFormsApplication1
                 click += 1;
                 if (consistir() && click < 3)
                 {
+                    txtForm_Leave(sender, e);
                     lblEx.Visible = false;
                     errinho.Clear();
                     List<Match> listinha = new List<Match>();
@@ -723,15 +724,17 @@ namespace WindowsFormsApplication1
         #region leave
         private void txtForm_Leave(object sender, EventArgs e)
         {
-            /*
             string[] res1 = txtForm.Text.Split(new char[] { 'i' });
             string[] res2 = txtForm.Text.Split(new char[] { 'j' });
 
             if (res1[0].IndexOf(mult) == -1 && res1[0].IndexOf(div) == -1 && res1[0].IndexOf(soma) == -1 && res1[0].IndexOf(sub) == -1 && res1[0] != "")
             {
-                
+                txtForm.Text = res1[0] + "*" + "i" + res1[1];
             }
-            */
+            if (res2[0].IndexOf(mult) == -1 && res2[0].IndexOf(div) == -1 && res2[0].IndexOf(soma) == -1 && res2[0].IndexOf(sub) == -1 && res2[0] != "")
+            {
+                txtForm.Text = res2[0] + "*" + "j" + res2[1];
+            }
         }
         #endregion
     }
