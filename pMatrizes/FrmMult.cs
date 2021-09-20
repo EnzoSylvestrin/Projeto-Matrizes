@@ -309,25 +309,25 @@ namespace WindowsFormsApplication1
                     }
                     else
                     {
-                        lblSomaE2.Location = new Point(grpzi2.X, grpzi.Y + 10);
+                        lblSomaE2.Location = new Point(grpzi2.X, grpzi2.Y + 10);
                         lblSomaE2.Visible = true;
                         lblRes2.Text = result[1].ToString();
                         if (int.Parse(j1) == 1 || int.Parse(j1) == 2)
                         {
-                            lblRes2.Location = new Point(grpzi2.X + 33, grpzi.Y + 10);
-                            lblTraco2.Location = new Point(grpzi2.X + 33, grpzi.Y + 30);
-                            lblTracoSec2.Location = new Point(grpzi2.X + 56, grpzi.Y + 50);
+                            lblRes2.Location = new Point(grpzi2.X + 33, grpzi2.Y + 10);
+                            lblTraco2.Location = new Point(grpzi2.X + 33, grpzi2.Y + 30);
+                            lblTracoSec2.Location = new Point(grpzi2.X + 56, grpzi2.Y + 50);
                         }
                         else
                         {
-                            lblRes2.Location = new Point(grpzi2.X + 104, grpzi.Y + 10);
-                            lblTraco2.Location = new Point(grpzi2.X + 80, grpzi.Y + 30);
-                            lblTracoSec2.Location = new Point(grpzi2.X + 90, grpzi.Y + 50);
+                            lblRes2.Location = new Point(grpzi2.X + 104, grpzi2.Y + 10);
+                            lblTraco2.Location = new Point(grpzi2.X + 80, grpzi2.Y + 30);
+                            lblTracoSec2.Location = new Point(grpzi2.X + 90, grpzi2.Y + 50);
                         }
-                        lblTr2.Location = new Point(grpzi2.X, grpzi.Y + 30);
+                        lblTr2.Location = new Point(grpzi2.X, grpzi2.Y + 30);
                         lblTr2.Visible = true;
                         lblTraco2.Text = traco[1].ToString();
-                        lblTrSec2.Location = new Point(grpzi2.X, grpzi.Y + 50);
+                        lblTrSec2.Location = new Point(grpzi2.X, grpzi2.Y + 50);
                         lblTrSec2.Visible = true;
                         lblTracoSec2.Text = tracoSec[1].ToString();
                         lblIgual.Location = new Point(subs.X + 5, lblSinal.Location.Y);
@@ -488,6 +488,7 @@ namespace WindowsFormsApplication1
         #region Limpar
         private void btnLimpar_Click(object sender, EventArgs e)
         {
+            errinho.Clear();
             lblSinal.Visible = false;
 
             lblTrSec.Visible = false;
@@ -580,7 +581,15 @@ namespace WindowsFormsApplication1
             }
             if (e.KeyCode == Keys.F5 && btnResOp.Visible)
             {
-                
+                btnResOp_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.Right)
+            {
+                txtForm.Focus();
+            }
+            if (e.KeyCode == Keys.Left)
+            {
+                mskTabela.Focus();
             }
         }
 

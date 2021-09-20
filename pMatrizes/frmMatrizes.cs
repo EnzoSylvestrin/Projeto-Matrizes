@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -614,15 +610,6 @@ namespace WindowsFormsApplication1
         #endregion
 
         #region Teclas
-        private void txtConst_KeyDown(object sender, KeyEventArgs e)
-        {
-            Teclas(sender, e);
-        }
-
-        private void txtj_KeyDown(object sender, KeyEventArgs e)
-        {
-            Teclas(sender, e);
-        }
 
         private void mskTabela_KeyDown(object sender, KeyEventArgs e)
         {
@@ -630,11 +617,6 @@ namespace WindowsFormsApplication1
         }
 
         private void mskTabela1_KeyDown(object sender, KeyEventArgs e)
-        {
-            Teclas(sender, e);
-        }
-
-        private void txti_KeyDown(object sender, KeyEventArgs e)
         {
             Teclas(sender, e);
         }
@@ -659,6 +641,12 @@ namespace WindowsFormsApplication1
                 if (e.KeyCode == Keys.N)
                 {
                     Atalhos_Click(sender, e);
+                    f = txtConst.Text.Split(new char[] { 'n' });
+                    txtConst.Text = f[0];
+                    g = txti.Text.Split(new char[] { 'n' });
+                    txti.Text = g[0];
+                    v = txtj.Text.Split(new char[] { 'n' });
+                    txtj.Text = v[0];
                 }
                 if (grpSS.Visible)
                 {
@@ -668,7 +656,15 @@ namespace WindowsFormsApplication1
                         mskTabela1.Focus();
                     }
                     if (e.KeyCode == Keys.R)
+                    {
+                        f = txtConst.Text.Split(new char[] { 'r' });
+                        txtConst.Text = f[0];
+                        g = txti.Text.Split(new char[] { 'r' });
+                        txti.Text = g[0];
+                        v = txtj.Text.Split(new char[] { 'r' });
+                        txtj.Text = v[0];
                         txtSinalSS.Focus();
+                    }
                     if (e.KeyCode == Keys.F4)
                     {
                         Novo(new Button() { Text = "Somar" });
@@ -688,7 +684,15 @@ namespace WindowsFormsApplication1
                         mskTabela.Focus();
                     }
                     if (e.KeyCode == Keys.R)
+                    {
+                        f = txtConst.Text.Split(new char[] { 'r' });
+                        txtConst.Text = f[0];
+                        g = txti.Text.Split(new char[] { 'r' });
+                        txti.Text = g[0];
+                        v = txtj.Text.Split(new char[] { 'r' });
+                        txtj.Text = v[0];
                         txtSinalMD.Focus();
+                    }
                     if (e.KeyCode == Keys.F4)
                     {
                         Novo(new Button() { Text = "Multiplicar" });
@@ -713,10 +717,6 @@ namespace WindowsFormsApplication1
                
         }
 
-        private void txtSinal_KeyDown(object sender, KeyEventArgs e)
-        {
-            Teclas(sender, e);
-        }
         private void cbxME_CheckedChanged(object sender, EventArgs e)
         {
             Teclas(sender, null);

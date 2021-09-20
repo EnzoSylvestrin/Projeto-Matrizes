@@ -83,6 +83,7 @@
             this.txtSinalMD.Size = new System.Drawing.Size(12, 20);
             this.txtSinalMD.TabIndex = 34;
             this.txtSinalMD.Text = "+";
+            this.txtSinalMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
             // 
             // txtj
             // 
@@ -90,7 +91,7 @@
             this.txtj.Name = "txtj";
             this.txtj.Size = new System.Drawing.Size(26, 20);
             this.txtj.TabIndex = 31;
-            this.txtj.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtj_KeyDown);
+            this.txtj.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
             // 
             // btnDiv
             // 
@@ -108,7 +109,7 @@
             this.txti.Name = "txti";
             this.txti.Size = new System.Drawing.Size(26, 20);
             this.txti.TabIndex = 29;
-            this.txti.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txti_KeyDown);
+            this.txti.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
             // 
             // btnMult
             // 
@@ -160,7 +161,7 @@
             this.txtSinalSS.Size = new System.Drawing.Size(12, 20);
             this.txtSinalSS.TabIndex = 33;
             this.txtSinalSS.Text = "+";
-            this.txtSinalSS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSinal_KeyDown);
+            this.txtSinalSS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
             // 
             // btnCriar
             // 
@@ -188,7 +189,7 @@
             this.txtConst.Name = "txtConst";
             this.txtConst.Size = new System.Drawing.Size(26, 20);
             this.txtConst.TabIndex = 23;
-            this.txtConst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtConst_KeyDown);
+            this.txtConst.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
             // 
             // mskTabela
             // 

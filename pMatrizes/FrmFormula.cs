@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
@@ -62,6 +59,7 @@ namespace WindowsFormsApplication1
             {
                 if (consistir())
                 {
+                    leave();
                     lblEx.Visible = false;
                     errinho.Clear();
                     List<Match> listinha = new List<Match>();
@@ -260,6 +258,46 @@ namespace WindowsFormsApplication1
             }
         }
 
+        private void leave()
+        {
+            string[] res1;
+            string[] res2;
+            if (txtForm.Text.IndexOf('i') > -1)
+            {
+                res1 = txtForm.Text.Split(new char[] { 'i' });
+                if (res1[0] != "" && res1[0].IndexOf(mult, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(div, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(soma, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(sub, res1[0].Length - 1, 1) == -1)
+                {
+                    txtForm.Text = res1[0] + "*" + "i" + res1[1];
+                }
+            }
+            if (txtForm.Text.IndexOf('j') > -1)
+            {
+                res2 = txtForm.Text.Split(new char[] { 'j' });
+                if (res2[0] != "" && res2[0].IndexOf(mult, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(div, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(soma, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(sub, res2[0].Length - 1, 1) == -1)
+                {
+                    txtForm.Text = res2[0] + "*" + "j" + res2[1];
+                }
+            }
+            if (txtForm.Text.IndexOf('j') > -1 && txtForm.Text.IndexOf('i') > -1)
+            {
+                res1 = txtForm.Text.Split(new char[] { 'i' });
+                res2 = txtForm.Text.Split(new char[] { 'j' });
+                if (res1[0].IndexOf('j') > -1)
+                {
+                    if (res1[0].IndexOf(soma, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(sub, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(mult, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(div, res1[0].Length - 1, 1) == -1)
+                    {
+                        txtForm.Text = res1[0] + "*" + "i" + res1[1];
+                    }
+                }
+                if (res2[0].IndexOf('i') > -1)
+                {
+                    if (res2[0].IndexOf(soma, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(sub, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(mult, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(div, res2[0].Length - 1, 1) == -1)
+                    {
+                        txtForm.Text = res2[0] + "*" + "j" + res2[1];
+                    }
+                }
+            }
+        }
         
     }
 }
