@@ -15,7 +15,6 @@ namespace matrix
     public partial class Form1 : Form
     {
         #region audio
-        //static CultureInfo ci = new CultureInfo("pt-BR");
         static bool IsBackColor = false;
         static readonly CultureInfo ci = new CultureInfo("en-US");
         static readonly SpeechRecognitionEngine sre =
