@@ -59,6 +59,8 @@
             this.btnGerar = new System.Windows.Forms.Button();
             this.txtForm = new System.Windows.Forms.TextBox();
             this.errinho = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnT1 = new System.Windows.Forms.Button();
+            this.btnT2 = new System.Windows.Forms.Button();
             this.grpFormula.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errinho)).BeginInit();
             this.SuspendLayout();
@@ -328,11 +330,33 @@
             // 
             this.errinho.ContainerControl = this;
             // 
+            // btnT1
+            // 
+            this.btnT1.Location = new System.Drawing.Point(642, 89);
+            this.btnT1.Name = "btnT1";
+            this.btnT1.Size = new System.Drawing.Size(17, 21);
+            this.btnT1.TabIndex = 88;
+            this.btnT1.Text = "t";
+            this.btnT1.UseVisualStyleBackColor = true;
+            this.btnT1.Click += new System.EventHandler(this.btnT1_Click);
+            // 
+            // btnT2
+            // 
+            this.btnT2.Location = new System.Drawing.Point(586, 59);
+            this.btnT2.Name = "btnT2";
+            this.btnT2.Size = new System.Drawing.Size(17, 21);
+            this.btnT2.TabIndex = 89;
+            this.btnT2.Text = "t";
+            this.btnT2.UseVisualStyleBackColor = true;
+            this.btnT2.Click += new System.EventHandler(this.btnT2_Click);
+            // 
             // FrmMult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 456);
+            this.Controls.Add(this.btnT2);
+            this.Controls.Add(this.btnT1);
             this.Controls.Add(this.chxAlteração);
             this.Controls.Add(this.lblTracoSec3);
             this.Controls.Add(this.lblTrSec3);
@@ -400,5 +424,7 @@
         private System.Windows.Forms.Button btnGerar;
         private System.Windows.Forms.TextBox txtForm;
         private System.Windows.Forms.ErrorProvider errinho;
+        private System.Windows.Forms.Button btnT2;
+        private System.Windows.Forms.Button btnT1;
     }
 }

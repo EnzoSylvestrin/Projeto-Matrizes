@@ -14,6 +14,7 @@ namespace WindowsFormsApplication1
         int tracosec = 0;
         double tracosecDiv = 0;
         double tracoDiv = 0;
+        string txtSender;
         #endregion
 
         public FrmMatrizes()
@@ -225,7 +226,7 @@ namespace WindowsFormsApplication1
             mskTabela1.Focus();
         }
 
-        private void Novo(object sender)
+        private void Novo(object sender = null, string i1 = null, string j1= null)
         {
             try
             {
@@ -237,18 +238,32 @@ namespace WindowsFormsApplication1
                 tracosec = 0;
                 tracosecDiv = 0;
                 bool ME = false;
-                Button send = (Button)sender;
-                switch (send.Text)
+                if (sender != null)
+                {
+                    Button send = (Button)sender;
+                    txtSender = send.Text;
+                }
+                switch (txtSender)
                 {
                     case "Somar":
                     case "Subtrair":
                         variavel = mskTabela.Text.Split(new char[] { '.' });
+                        if (i1 == null)
+                        {
+                            i1 = variavel[0];
+                            j1 = variavel[1];
+                        }
                         break;
                     default:
                         variavel = mskTabela1.Text.Split(new char[] { '.' });
+                        if (i1 == null)
+                        {
+                            i1 = variavel[0];
+                            j1 = variavel[1];
+                        }
                         break;
                 }
-                if (Consistir(send.Text))
+                if (Consistir(txtSender))
                 {
                     erro.Clear();
                     Point ponto = new Point(10, 10);
@@ -256,9 +271,9 @@ namespace WindowsFormsApplication1
                     {
                         Controls.Remove(item);
                     }
-                    for (int i = 0; i < int.Parse(variavel[0]); i++)
+                    for (int i = 0; i < int.Parse(i1); i++)
                     {
-                        for (int j = 0; j < int.Parse(variavel[1]); j++)
+                        for (int j = 0; j < int.Parse(j1); j++)
                         {
                             if (i == j)
                             {
@@ -266,7 +281,7 @@ namespace WindowsFormsApplication1
                                 {
                                     if (txtSinalSS.Text == "+")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Somar":
                                                 traco += (i + 1) + (j + 1) + int.Parse(txtConst.Text);
@@ -278,7 +293,7 @@ namespace WindowsFormsApplication1
                                     }
                                     else if (txtSinalSS.Text == "*")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Somar":
                                                 traco += (i + 1) * (j + 1) + int.Parse(txtConst.Text);
@@ -290,7 +305,7 @@ namespace WindowsFormsApplication1
                                     }
                                     if (txtSinalSS.Text == "-")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Somar":
                                                 traco += (i + 1) - (j + 1) + int.Parse(txtConst.Text);
@@ -305,7 +320,7 @@ namespace WindowsFormsApplication1
                                 {
                                     if (txtSinalMD.Text == "+")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Multiplicar":
                                                 traco += (i + 1) * int.Parse(txti.Text) + (j + 1) * int.Parse(txtj.Text);
@@ -317,7 +332,7 @@ namespace WindowsFormsApplication1
                                     }
                                     else if (txtSinalMD.Text == "*")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Multiplicar":
                                                 traco += (i + 1) * int.Parse(txti.Text) * (j + 1) * int.Parse(txtj.Text);
@@ -329,7 +344,7 @@ namespace WindowsFormsApplication1
                                     }
                                     if (txtSinalMD.Text == "-")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Multiplicar":
                                                 traco += (i + 1) * int.Parse(txti.Text) - (j + 1) * int.Parse(txtj.Text);
@@ -341,13 +356,13 @@ namespace WindowsFormsApplication1
                                     }
                                 }
                             }
-                            if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                            if (i + 1 + j + 1 == int.Parse(j1) + 1)
                             {
                                 if (grpSS.Visible)
                                 {
                                     if (txtSinalSS.Text == "+")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Somar":
                                                 tracosec += (i + 1) + (j + 1) + int.Parse(txtConst.Text);
@@ -359,7 +374,7 @@ namespace WindowsFormsApplication1
                                     }
                                     else if (txtSinalSS.Text == "*")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Somar":
                                                 tracosec += (i + 1) * (j + 1) + int.Parse(txtConst.Text);
@@ -371,7 +386,7 @@ namespace WindowsFormsApplication1
                                     }
                                     if (txtSinalSS.Text == "-")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Somar":
                                                 tracosec += (i + 1) - (j + 1) + int.Parse(txtConst.Text);
@@ -386,7 +401,7 @@ namespace WindowsFormsApplication1
                                 {
                                     if (txtSinalMD.Text == "+")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Multiplicar":
                                                 tracosec += (i + 1) * int.Parse(txti.Text) + (j + 1) * int.Parse(txtj.Text);
@@ -398,7 +413,7 @@ namespace WindowsFormsApplication1
                                     }
                                     else if (txtSinalMD.Text == "*")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Multiplicar":
                                                 tracosec += (i + 1) * int.Parse(txti.Text) * (j + 1) * int.Parse(txtj.Text);
@@ -410,7 +425,7 @@ namespace WindowsFormsApplication1
                                     }
                                     if (txtSinalMD.Text == "-")
                                     {
-                                        switch (send.Text)
+                                        switch (txtSender)
                                         {
                                             case "Multiplicar":
                                                 tracosec += (i + 1) * int.Parse(txti.Text) - (j + 1) * int.Parse(txtj.Text);
@@ -424,9 +439,9 @@ namespace WindowsFormsApplication1
                             }   
                             Field novo = new Field();
                             if (grpSS.Visible)
-                                novo.Click += (sender2, e2) => field_Click(novo, send.Text, txtSinalSS.Text, txtConst.Text, "", "");
+                                novo.Click += (sender2, e2) => field_Click(novo, txtSender, txtSinalSS.Text, txtConst.Text, "", "");
                             else
-                                novo.Click += (sender2, e2) => field_Click(novo, send.Text, txtSinalMD.Text, "", txti.Text, txtj.Text);
+                                novo.Click += (sender2, e2) => field_Click(novo, txtSender, txtSinalMD.Text, "", txti.Text, txtj.Text);
                             novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1);
                             novo.Size = new Size(30, 30);
                             novo.Location = ponto;
@@ -434,7 +449,7 @@ namespace WindowsFormsApplication1
                             {
                                 if (txtSinalSS.Text == "+")
                                 {
-                                    switch (send.Text)
+                                    switch (txtSender)
                                     {
                                         case "Somar":
                                             novo.Text = Convert.ToString((i + 1) + (j + 1) + int.Parse(txtConst.Text));
@@ -448,7 +463,7 @@ namespace WindowsFormsApplication1
                                 }
                                 else if (txtSinalSS.Text == "*")
                                 {
-                                    switch (send.Text)
+                                    switch (txtSender)
                                     {
                                         case "Somar":
                                             novo.Text = Convert.ToString((i + 1) * (j + 1) + int.Parse(txtConst.Text));
@@ -462,7 +477,7 @@ namespace WindowsFormsApplication1
                                 }
                                 if (txtSinalSS.Text == "-")
                                 {
-                                    switch (send.Text)
+                                    switch (txtSender)
                                     {
                                         case "Somar":
                                             novo.Text = Convert.ToString((i + 1) - (j + 1) + int.Parse(txtConst.Text));
@@ -479,7 +494,7 @@ namespace WindowsFormsApplication1
                             {
                                 if (txtSinalMD.Text == "+")
                                 {
-                                    switch (send.Text)
+                                    switch (txtSender)
                                     {
                                         case "Multiplicar":
                                             novo.Text = Convert.ToString((i + 1) * int.Parse(txti.Text) + (j + 1) * int.Parse(txtj.Text));
@@ -493,7 +508,7 @@ namespace WindowsFormsApplication1
                                 }
                                 else if (txtSinalMD.Text == "*")
                                 {
-                                    switch (send.Text)
+                                    switch (txtSender)
                                     {
                                         case "Multiplicar":
                                             novo.Text = Convert.ToString((i + 1) * int.Parse(txti.Text) * (j + 1) * int.Parse(txtj.Text));
@@ -507,7 +522,7 @@ namespace WindowsFormsApplication1
                                 }
                                 if (txtSinalMD.Text == "-")
                                 {
-                                    switch (send.Text)
+                                    switch (txtSender)
                                     {
                                         case "Multiplicar":
                                             novo.Text = Convert.ToString((i + 1) * int.Parse(txti.Text) - (j + 1) * int.Parse(txtj.Text));
@@ -532,7 +547,7 @@ namespace WindowsFormsApplication1
                     lblTr.Visible = true;
                     lblSomaE.Visible = true;
                     lblTrSec.Visible = true;
-                    if (send.Text != "Divisão")
+                    if (txtSender != "Divisão")
                     {
                         lblRes.Text = somaRes.ToString();
                         lblTraco.Text = traco.ToString();
@@ -546,12 +561,12 @@ namespace WindowsFormsApplication1
                     }
                     if (cbxME.Checked)
                     {
-                        if (int.Parse(variavel[0]) == 1)
+                        if (int.Parse(i1) == 1)
                         {
                             MessageBox.Show("Essa é uma Matriz especial no caso uma Matriz coluna!!", "Matriz especial...", MessageBoxButtons.OK);
                             ME = true;
                         }
-                        if (int.Parse(variavel[1]) == 1)
+                        if (int.Parse(j1) == 1)
                         {
                             MessageBox.Show("Essa é uma Matriz especial no caso uma Matriz linha!!", "Matriz especial...", MessageBoxButtons.OK);
                             ME = true;
@@ -561,7 +576,7 @@ namespace WindowsFormsApplication1
                             MessageBox.Show("Essa é uma Matriz especial no caso uma Matriz Nula!!", "Matriz especial...", MessageBoxButtons.OK);
                             ME = true;
                         }
-                        if (int.Parse(variavel[0]) == int.Parse(variavel[1]))
+                        if (int.Parse(i1) == int.Parse(j1))
                         {
                             MessageBox.Show("Essa é uma Matriz especial no caso uma Matriz quadrada!!", "Matriz especial...", MessageBoxButtons.OK);
                             ME = true;
@@ -738,5 +753,21 @@ namespace WindowsFormsApplication1
         }
         #endregion
 
+        #region Transposta
+        private void btnTrasposta_Click(object sender, EventArgs e)
+        {
+            string[] variavel;
+            if (grpMD.Visible)
+            {
+                variavel = mskTabela1.Text.Split(new char[] { '.' });
+                Novo(null, variavel[1], variavel[0]);
+            }
+            else
+            {
+                variavel = mskTabela.Text.Split(new char[] { '.' });
+                Novo(null, variavel[1], variavel[0]);
+            }
+        }
+        #endregion
     }
 }

@@ -55,6 +55,7 @@
             this.cbxME = new System.Windows.Forms.CheckBox();
             this.lblTrSec = new System.Windows.Forms.Label();
             this.lblTracoSec = new System.Windows.Forms.Label();
+            this.btnTrasposta = new System.Windows.Forms.Button();
             this.grpMD.SuspendLayout();
             this.grpSS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.erro)).BeginInit();
@@ -308,12 +309,23 @@
             this.lblTracoSec.Size = new System.Drawing.Size(0, 13);
             this.lblTracoSec.TabIndex = 38;
             // 
+            // btnTrasposta
+            // 
+            this.btnTrasposta.Location = new System.Drawing.Point(726, 142);
+            this.btnTrasposta.Name = "btnTrasposta";
+            this.btnTrasposta.Size = new System.Drawing.Size(76, 27);
+            this.btnTrasposta.TabIndex = 39;
+            this.btnTrasposta.Text = "Transposta";
+            this.btnTrasposta.UseVisualStyleBackColor = true;
+            this.btnTrasposta.Click += new System.EventHandler(this.btnTrasposta_Click);
+            // 
             // FrmMatrizes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 504);
             this.ControlBox = false;
+            this.Controls.Add(this.btnTrasposta);
             this.Controls.Add(this.lblTracoSec);
             this.Controls.Add(this.lblTrSec);
             this.Controls.Add(this.cbxME);
@@ -368,9 +380,7 @@
         private System.Windows.Forms.TextBox txtSinalMD;
         private System.Windows.Forms.Label lblTracoSec;
         private System.Windows.Forms.Label lblTrSec;
-
-
-
+        private System.Windows.Forms.Button btnTrasposta;
     }
 }
 
