@@ -61,6 +61,7 @@
             this.errinho = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnT1 = new System.Windows.Forms.Button();
             this.btnT2 = new System.Windows.Forms.Button();
+            this.btnT3 = new System.Windows.Forms.Button();
             this.grpFormula.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errinho)).BeginInit();
             this.SuspendLayout();
@@ -350,11 +351,22 @@
             this.btnT2.UseVisualStyleBackColor = true;
             this.btnT2.Click += new System.EventHandler(this.btnT2_Click);
             // 
+            // btnT3
+            // 
+            this.btnT3.Location = new System.Drawing.Point(655, 59);
+            this.btnT3.Name = "btnT3";
+            this.btnT3.Size = new System.Drawing.Size(17, 21);
+            this.btnT3.TabIndex = 90;
+            this.btnT3.Text = "t";
+            this.btnT3.UseVisualStyleBackColor = true;
+            this.btnT3.Click += new System.EventHandler(this.btnT3_Click);
+            // 
             // FrmMult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 456);
+            this.Controls.Add(this.btnT3);
             this.Controls.Add(this.btnT2);
             this.Controls.Add(this.btnT1);
             this.Controls.Add(this.chxAlteração);
@@ -426,5 +438,6 @@
         private System.Windows.Forms.ErrorProvider errinho;
         private System.Windows.Forms.Button btnT2;
         private System.Windows.Forms.Button btnT1;
+        private System.Windows.Forms.Button btnT3;
     }
 }

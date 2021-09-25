@@ -7,6 +7,11 @@ namespace WindowsFormsApplication1
 {
     public partial class FrmMatrizes : Form
     {
+        public FrmMatrizes()
+        {
+            InitializeComponent();
+        }
+
         #region Variaveis
         int somaRes = 0;
         double somaResDiv = 0;
@@ -16,11 +21,6 @@ namespace WindowsFormsApplication1
         double tracoDiv = 0;
         string txtSender;
         #endregion
-
-        public FrmMatrizes()
-        {
-            InitializeComponent();
-        }
 
         #region Consistir
         public bool Consistir(string OP)
@@ -753,21 +753,5 @@ namespace WindowsFormsApplication1
         }
         #endregion
 
-        #region Transposta
-        private void btnTrasposta_Click(object sender, EventArgs e)
-        {
-            string[] variavel;
-            if (grpMD.Visible)
-            {
-                variavel = mskTabela1.Text.Split(new char[] { '.' });
-                Novo(null, variavel[1], variavel[0]);
-            }
-            else
-            {
-                variavel = mskTabela.Text.Split(new char[] { '.' });
-                Novo(null, variavel[1], variavel[0]);
-            }
-        }
-        #endregion
     }
 }

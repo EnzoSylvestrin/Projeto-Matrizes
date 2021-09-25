@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pMatrizes", "pMatrizes\pMatrizes.csproj", "{5A8C618D-E3F0-485E-BF9A-7FC8B6D46260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "matrix", "..\matrix\matrix\matrix.csproj", "{8012CD8D-09D7-4C02-9550-1FA491F81AF7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -17,10 +15,6 @@ Global
 		{5A8C618D-E3F0-485E-BF9A-7FC8B6D46260}.Debug|x86.Build.0 = Debug|x86
 		{5A8C618D-E3F0-485E-BF9A-7FC8B6D46260}.Release|x86.ActiveCfg = Release|x86
 		{5A8C618D-E3F0-485E-BF9A-7FC8B6D46260}.Release|x86.Build.0 = Release|x86
-		{8012CD8D-09D7-4C02-9550-1FA491F81AF7}.Debug|x86.ActiveCfg = Debug|x86
-		{8012CD8D-09D7-4C02-9550-1FA491F81AF7}.Debug|x86.Build.0 = Debug|x86
-		{8012CD8D-09D7-4C02-9550-1FA491F81AF7}.Release|x86.ActiveCfg = Release|x86
-		{8012CD8D-09D7-4C02-9550-1FA491F81AF7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

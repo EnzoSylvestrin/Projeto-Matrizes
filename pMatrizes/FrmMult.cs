@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -43,6 +42,7 @@ namespace WindowsFormsApplication1
 
         private System.Windows.Forms.GroupBox grp;
         private System.Windows.Forms.GroupBox grp2;
+        private System.Windows.Forms.GroupBox grp3;
         #endregion
 
         #region consistir
@@ -221,28 +221,20 @@ namespace WindowsFormsApplication1
                             }
                             Field novo = new Field();
                             novo.Click += (sender2, e2) => field_Click(novo);
+                            if (cont == 0)
+                            {
+                                novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1);
+                            }
+                            else
+                            {
+                                novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1) + " ";
+                            }
                             if (ee == null)
                             {
-                                if (cont == 0)
-                                {
-                                    novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1);
-                                }
-                                else
-                                {
-                                    novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1) + " ";
-                                }
                                 novo.Text = returnName(createIntList(i + 1, j + 1, res), listinha);
                             }
                             else
                             {
-                                if (cont == 0)
-                                {
-                                    novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1);
-                                }
-                                else
-                                {
-                                    novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1) + " ";
-                                }
                                 novo.Text = resu[j * int.Parse(variavel[0]) + i].ToString();
                             }
                             if (cont == 0)
@@ -362,11 +354,8 @@ namespace WindowsFormsApplication1
                         lblTrSec.Visible = true;
                         lblTracoSec.Text = tracoSec[0].ToString();
                         chxAlteração.Visible = true;
-                        if (ee == null)
-                        {
-                            mskTabela.Text = j1.ToString();
-                            mskTabela.Focus();
-                        }
+                        mskTabela.Text = j1.ToString();
+                        mskTabela.Focus();
                         cont++;
                     }
                     else
@@ -407,8 +396,8 @@ namespace WindowsFormsApplication1
                         btnGerar.Enabled = false;
                         mskTabela.Enabled = false;
                         txtForm.Enabled = false;
+                        btnResOp.Focus();
                     }
-                    txtForm.Focus();
                 }
             }
         
@@ -418,7 +407,8 @@ namespace WindowsFormsApplication1
                 btnLimpar_Click(sender, e);
             }
         }
-    
+
+        #region formula
         public List<int> createIntList(int i, int j, string[] res)
         {
             try
@@ -498,6 +488,8 @@ namespace WindowsFormsApplication1
         }
         #endregion
 
+        #endregion
+
         #region field click
         private void field_Click(Field field)
         {
@@ -525,7 +517,6 @@ namespace WindowsFormsApplication1
                     field.Text = txt.txtCel.Text;
                 }
             }
-            MessageBox.Show(field.Name);
         }
         #endregion
 
@@ -538,6 +529,7 @@ namespace WindowsFormsApplication1
 
             btnT1.Visible = false;
             btnT2.Visible = false;
+            btnT3.Visible = false;
             btnResOp.Visible = false;
             lblTrSec.Visible = false;
             lblSomaE.Visible = false;
@@ -565,6 +557,7 @@ namespace WindowsFormsApplication1
 
             btnT1.Visible = false;
             btnT2.Visible = false;
+            btnT3.Visible = false;
             lblTrSec.Visible = false;
             lblSomaE.Visible = false;
             lblTr.Visible = false;
@@ -603,6 +596,7 @@ namespace WindowsFormsApplication1
             btnResOp.Visible = false;
             this.Controls.Remove(grp);
             this.Controls.Remove(grp2);
+            this.Controls.Remove(grp3);
 
             ia = 0;
             result[0] = 0;
@@ -616,14 +610,6 @@ namespace WindowsFormsApplication1
             tracoSec[2] = 0;
             x = false;
             a = 20;
-
-            if (click > -1)
-            {
-                foreach (Control item in Controls.OfType<Field>().ToList())
-                {
-                    Controls.Remove(item);
-                }
-            }
             click = -1;
 
 
@@ -691,8 +677,11 @@ namespace WindowsFormsApplication1
         #region Resultado click
         private void btnResOp_Click(object sender, EventArgs e)
         {
-            btnT2.Visible = false;
-            string[] variavel = mskTabela.Text.Split(new char[] { '.' });
+            Novo2(sender, e);
+        }
+
+        private void Novo2(object sender, EventArgs e, string ee = null)
+        {
             if (j1 != variavel[0])
             {
                 if (MessageBox.Show("Não é possivel realizar a multiplicação dessas matrizes!!" + System.Environment.NewLine + System.Environment.NewLine + "Deseja reiniciar?", "erro...", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
@@ -705,13 +694,30 @@ namespace WindowsFormsApplication1
                     return;
                 }
             }
-            traco[2] = 0;
-            tracoSec[2] = 0;
-            result[2] = 0;
-            foreach (Control item in Controls.OfType<Field>().ToList())
+            this.Controls.Remove(grp3);
+            if (ee != null)
             {
-                Controls.Remove(item);
+                string x = i1;
+                i1 = variavel[1];
+                variavel[1] = x;
             }
+            btnT2.Visible = false;
+            if (ee == null)
+            {
+                traco[2] = 0;
+                tracoSec[2] = 0;
+                result[2] = 0;
+            }
+            grpzi = new Point(lblIgual.Location.X + 50, 200);
+            ponto = new Point(0, 0);
+            this.grp3 = new System.Windows.Forms.GroupBox();
+            grp3.Name = "grp1";
+            grp3.Location = grpzi;
+            int size = int.Parse(i1) * 30;
+            int size2 = int.Parse(variavel[1]) * 35;
+            grp3.Size = new Size(size2, size);
+            grp3.Visible = true;
+            this.Controls.Add(grp3);
             subs = new Point(lblIgual.Location.X + 50, 200);
             for (int i = 0; i < int.Parse(i1); i++)
             {
@@ -721,34 +727,47 @@ namespace WindowsFormsApplication1
                     novo.Click += (sender2, e2) => field_Click(novo);
                     novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1);
                     novo.Size = new Size(35, 30);
-                    for (int t = 0; t < int.Parse(j1); t++)
+                    if (ee == null)
                     {
-                        Control[] lbl = grp2.Controls.Find(Convert.ToString(t + 1) + "." + Convert.ToString(j + 1) + " ", true);
-                        Label lble = (Label)lbl[0];
-                        Control[] lbl2 = grp.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(t + 1), true);
-                        Label lble2 = (Label)lbl2[0];
-                        resul1 += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                        result[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                        if (i == j)
+                        for (int t = 0; t < int.Parse(j1); t++)
                         {
-                            traco[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                            Control[] lbl = grp2.Controls.Find(Convert.ToString(t + 1) + "." + Convert.ToString(j + 1) + " ", true);
+                            Label lble = (Label)lbl[0];
+                            Control[] lbl2 = grp.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(t + 1), true);
+                            Label lble2 = (Label)lbl2[0];
+                            resul1 += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                            result[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                            if (i == j)
+                            {
+                                traco[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                            }
+                            if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                            {
+                                tracoSec[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                            }
                         }
-                        if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
-                        {
-                            tracoSec[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                        }
+                        novo.Text = resul1.ToString();
+                        resul1 = 0;
                     }
-                    novo.Text = resul1.ToString();
-                    resul1 = 0;
-                    novo.Location = subs;
+                    else
+                    {
+                        novo.Text = resu[j * int.Parse(i1) + i].ToString();
+                    }                   
+                    novo.Location = ponto;
                     novo.BorderStyle = BorderStyle.FixedSingle;
                     novo.Font = new Font("Arial", 8);
                     this.Controls.Add(novo);
-
-                    subs.X += 35;
+                    this.grp3.Controls.Add(novo);
+                    ponto.X += 35;
+                    grpzi.X += 35;
                 }
+                ponto.Y += 30;
                 subs.Y += 30;
-                subs.X = lblIgual.Location.X + 50;
+                ponto.X = 0;
+                if (i != int.Parse(i1) - 1)
+                {
+                    grpzi.X = lblIgual.Location.X + 50;
+                }
             }
             lblSomaE3.Location = new Point(subs.X, subs.Y + 10);
             lblSomaE3.Visible = true;
@@ -764,6 +783,8 @@ namespace WindowsFormsApplication1
                 lblTraco3.Location = new Point(subs.X + 80, subs.Y + 30);
                 lblTracoSec3.Location = new Point(subs.X + 90, subs.Y + 50);
             }
+            btnT3.Location = new Point(grpzi.X, 177);
+            btnT3.Visible = true;
             lblRes3.Text = result[2].ToString();
             lblTr3.Location = new Point(subs.X, subs.Y + 30);
             lblTr3.Visible = true;
@@ -771,6 +792,10 @@ namespace WindowsFormsApplication1
             lblTrSec3.Location = new Point(subs.X, subs.Y + 50);
             lblTrSec3.Visible = true;
             lblTracoSec3.Text = tracoSec[2].ToString();
+            if (ee != null)
+            {
+                btnResOp.Enabled = false;
+            }
             txtForm.Focus();
         }
         #endregion
@@ -855,6 +880,26 @@ namespace WindowsFormsApplication1
                 }
             }
             Novo(sender, e, 1, "aa");
+        }
+
+        private void btnT3_Click(object sender, EventArgs e)
+        {
+            this.Controls.Remove(grp3);
+            conte = 0;
+            resu = new int[int.Parse(i1) * int.Parse(variavel[1])];
+            Control[] lbl = new Control[int.Parse(i1) * int.Parse(variavel[1])];
+            for (int i = 0; i < int.Parse(i1); i++)
+            {
+                for (int j = 0; j < int.Parse(variavel[1]); j++)
+                {
+                    lbl = grp3.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(j + 1), true);
+                    Label lble = (Label)lbl[0];
+                    resu[conte] = int.Parse(lble.Text);
+                    conte++;
+                }
+            }
+            Novo2(sender, e, "aa");
+            
         }
         #endregion
     }

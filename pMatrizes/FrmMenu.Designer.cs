@@ -33,9 +33,9 @@
             this.fórmulaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matrizesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,42 +67,42 @@
             // fórmulaToolStripMenuItem
             // 
             this.fórmulaToolStripMenuItem.Name = "fórmulaToolStripMenuItem";
-            this.fórmulaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fórmulaToolStripMenuItem.Text = "Fórmula - Ambos";
+            this.fórmulaToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.fórmulaToolStripMenuItem.Text = "Fórmula";
             this.fórmulaToolStripMenuItem.Click += new System.EventHandler(this.fórmulaToolStripMenuItem_Click);
             // 
             // matrizesToolStripMenuItem
             // 
             this.matrizesToolStripMenuItem.Name = "matrizesToolStripMenuItem";
-            this.matrizesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.matrizesToolStripMenuItem.Text = "Matrizes - Enzo";
+            this.matrizesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.matrizesToolStripMenuItem.Text = "Gerador de Matriz";
             this.matrizesToolStripMenuItem.Click += new System.EventHandler(this.matrizesToolStripMenuItem_Click);
             // 
             // SomaToolStripMenuItem
             // 
             this.SomaToolStripMenuItem.Name = "SomaToolStripMenuItem";
-            this.SomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.SomaToolStripMenuItem.Text = "Soma e Sub - Enzo";
+            this.SomaToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.SomaToolStripMenuItem.Text = "Soma, Subtração e divisão";
             this.SomaToolStripMenuItem.Click += new System.EventHandler(this.SomaToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // sairToolStripMenuItem
-            // 
-            this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sairToolStripMenuItem.Text = "Sair";
-            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // MultToolStripMenuItem
             // 
             this.MultToolStripMenuItem.Name = "MultToolStripMenuItem";
-            this.MultToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.MultToolStripMenuItem.Text = "Mult - Enzo";
+            this.MultToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.MultToolStripMenuItem.Text = "Multiplicação";
             this.MultToolStripMenuItem.Click += new System.EventHandler(this.MultToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(209, 6);
+            // 
+            // sairToolStripMenuItem
+            // 
+            this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // FrmMenu
             // 
