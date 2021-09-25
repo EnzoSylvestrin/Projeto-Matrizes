@@ -202,22 +202,45 @@ namespace WindowsFormsApplication1
                     {
                         for (int j = 0; j < int.Parse(variavel[1]); j++)
                         {
-                            if (i == j && cont == 0)
+                            if (ee == null)
                             {
-                                traco[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
-                            }
-                            else if (i == j)
-                            {
-                                traco[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
-                            }
+                                if (i == j && cont == 0)
+                                {
+                                    traco[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
+                                else if (i == j)
+                                {
+                                    traco[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
 
-                            if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1 && cont == 0)
-                            {
-                                tracoSec[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1 && cont == 0)
+                                {
+                                    tracoSec[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
+                                else if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                                {
+                                    tracoSec[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
                             }
-                            else if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                            else
                             {
-                                tracoSec[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                if (i == j && cont == 0)
+                                {
+                                    traco[0] += resu[j * int.Parse(variavel[0]) + i];
+                                }
+                                else if (i == j)
+                                {
+                                    traco[1] += resu[j * int.Parse(variavel[0]) + i];
+                                }
+
+                                if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1 && cont == 0)
+                                {
+                                    tracoSec[0] += resu[j * int.Parse(variavel[0]) + i];
+                                }
+                                else if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                                {
+                                    tracoSec[1] += resu[j * int.Parse(variavel[0]) + i];
+                                }
                             }
                             Field novo = new Field();
                             novo.Click += (sender2, e2) => field_Click(novo);
@@ -232,19 +255,28 @@ namespace WindowsFormsApplication1
                             if (ee == null)
                             {
                                 novo.Text = returnName(createIntList(i + 1, j + 1, res), listinha);
+                                if(cont == 0)
+                                {
+                                    result[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
+                                else
+                                {
+                                    result[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
                             }
                             else
                             {
                                 novo.Text = resu[j * int.Parse(variavel[0]) + i].ToString();
+                                if (cont == 0)
+                                {
+                                    result[0] += resu[j * int.Parse(variavel[0]) + i];
+                                }
+                                else
+                                {
+                                    result[1] += resu[j * int.Parse(variavel[0]) + i];
+                                }
                             }
-                            if (cont == 0)
-                            {
-                                result[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
-                            }
-                            else
-                            {
-                                result[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
-                            }
+                            
                             novo.Size = new Size(30, 30);
                             if (cont == 0)
                             {
@@ -702,12 +734,9 @@ namespace WindowsFormsApplication1
                 variavel[1] = x;
             }
             btnT2.Visible = false;
-            if (ee == null)
-            {
-                traco[2] = 0;
-                tracoSec[2] = 0;
-                result[2] = 0;
-            }
+            traco[2] = 0;
+            tracoSec[2] = 0;
+            result[2] = 0;
             grpzi = new Point(lblIgual.Location.X + 50, 200);
             ponto = new Point(0, 0);
             this.grp3 = new System.Windows.Forms.GroupBox();
@@ -751,6 +780,15 @@ namespace WindowsFormsApplication1
                     }
                     else
                     {
+                        if (i == j)
+                        {
+                            traco[2] += resu[j * int.Parse(i1) + i];
+                        }
+                        if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                        {
+                            tracoSec[2] += resu[j * int.Parse(i1) + i];
+                        }
+                        result[2] += resu[j * int.Parse(i1) + i];
                         novo.Text = resu[j * int.Parse(i1) + i].ToString();
                     }                   
                     novo.Location = ponto;
