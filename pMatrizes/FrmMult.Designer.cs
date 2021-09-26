@@ -62,6 +62,7 @@
             this.btnT1 = new System.Windows.Forms.Button();
             this.btnT2 = new System.Windows.Forms.Button();
             this.btnT3 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.grpFormula.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errinho)).BeginInit();
             this.SuspendLayout();
@@ -136,6 +137,7 @@
             this.btnResOp.Text = "Gerar Resultado";
             this.btnResOp.UseVisualStyleBackColor = true;
             this.btnResOp.Click += new System.EventHandler(this.btnResOp_Click);
+            this.btnResOp.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
             // 
             // lblIgual
             // 
@@ -270,20 +272,21 @@
             // 
             // grpFormula
             // 
+            this.grpFormula.Controls.Add(this.label1);
             this.grpFormula.Controls.Add(this.btnLimpar);
             this.grpFormula.Controls.Add(this.mskTabela);
             this.grpFormula.Controls.Add(this.lblTabela);
             this.grpFormula.Controls.Add(this.btnGerar);
             this.grpFormula.Controls.Add(this.txtForm);
-            this.grpFormula.Location = new System.Drawing.Point(19, 89);
+            this.grpFormula.Location = new System.Drawing.Point(19, 72);
             this.grpFormula.Name = "grpFormula";
-            this.grpFormula.Size = new System.Drawing.Size(231, 88);
+            this.grpFormula.Size = new System.Drawing.Size(236, 105);
             this.grpFormula.TabIndex = 64;
             this.grpFormula.TabStop = false;
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(78, 49);
+            this.btnLimpar.Location = new System.Drawing.Point(65, 67);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(50, 25);
             this.btnLimpar.TabIndex = 50;
@@ -293,17 +296,17 @@
             // 
             // mskTabela
             // 
-            this.mskTabela.Location = new System.Drawing.Point(108, 14);
+            this.mskTabela.Location = new System.Drawing.Point(75, 41);
             this.mskTabela.Mask = "0,0";
             this.mskTabela.Name = "mskTabela";
             this.mskTabela.Size = new System.Drawing.Size(24, 20);
             this.mskTabela.TabIndex = 27;
-            this.mskTabela.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskTabela_KeyDown);
+            this.mskTabela.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
             // 
             // lblTabela
             // 
             this.lblTabela.AutoSize = true;
-            this.lblTabela.Location = new System.Drawing.Point(14, 21);
+            this.lblTabela.Location = new System.Drawing.Point(7, 25);
             this.lblTabela.Name = "lblTabela";
             this.lblTabela.Size = new System.Drawing.Size(98, 13);
             this.lblTabela.TabIndex = 26;
@@ -311,7 +314,7 @@
             // 
             // btnGerar
             // 
-            this.btnGerar.Location = new System.Drawing.Point(140, 49);
+            this.btnGerar.Location = new System.Drawing.Point(130, 67);
             this.btnGerar.Name = "btnGerar";
             this.btnGerar.Size = new System.Drawing.Size(54, 25);
             this.btnGerar.TabIndex = 25;
@@ -321,11 +324,11 @@
             // 
             // txtForm
             // 
-            this.txtForm.Location = new System.Drawing.Point(153, 14);
+            this.txtForm.Location = new System.Drawing.Point(130, 41);
             this.txtForm.Name = "txtForm";
             this.txtForm.Size = new System.Drawing.Size(63, 20);
             this.txtForm.TabIndex = 24;
-            this.txtForm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtForm_KeyDown);
+            this.txtForm.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
             // 
             // errinho
             // 
@@ -360,6 +363,16 @@
             this.btnT3.Text = "t";
             this.btnT3.UseVisualStyleBackColor = true;
             this.btnT3.Click += new System.EventHandler(this.btnT3_Click);
+            this.btnT3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(127, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 51;
+            this.label1.Text = "Padrão:";
             // 
             // FrmMult
             // 
@@ -439,5 +452,6 @@
         private System.Windows.Forms.Button btnT2;
         private System.Windows.Forms.Button btnT1;
         private System.Windows.Forms.Button btnT3;
+        private System.Windows.Forms.Label label1;
     }
 }

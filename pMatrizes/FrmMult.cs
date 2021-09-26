@@ -435,7 +435,7 @@ namespace WindowsFormsApplication1
         
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message);
+                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message, "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnLimpar_Click(sender, e);
             }
         }
@@ -580,7 +580,7 @@ namespace WindowsFormsApplication1
             mskTabela.Focus();
         }
         #endregion
-
+    
         #region Limpar
         private void btnLimpar_Click(object sender, EventArgs e)
         {
@@ -626,6 +626,7 @@ namespace WindowsFormsApplication1
             txtForm.Text = "";
             btnGerar.Enabled = true;
             btnResOp.Visible = false;
+            btnResOp.Enabled = true;
             this.Controls.Remove(grp);
             this.Controls.Remove(grp2);
             this.Controls.Remove(grp3);
@@ -653,11 +654,6 @@ namespace WindowsFormsApplication1
         #endregion
 
         #region teclas
-        private void mskTabela_KeyDown(object sender, KeyEventArgs e)
-        {
-            Teclas(sender, e);
-        }
-
         private void Teclas(object sender, KeyEventArgs e)
         {
             if (mskTabela.MaskCompleted && e.KeyCode != Keys.Back)
@@ -698,11 +694,26 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-        }
-
-        private void txtForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            Teclas(sender, e);
+            if (e.KeyCode == Keys.T)
+            {
+                if (txtForm.Focused)
+                {
+                    string[] t = txtForm.Text.Split(new char[] { 't' });
+                    txtForm.Text = t[0];
+                }
+                if (btnT1.Visible)
+                {
+                    btnT1_Click(sender, e);
+                }
+                else if (btnT2.Visible)
+                {
+                    btnT2_Click(sender, e);
+                }
+                else if (btnT3.Visible)
+                {
+                    btnT3_Click(sender, e);
+                }
+            }
         }
         #endregion
 
@@ -714,231 +725,270 @@ namespace WindowsFormsApplication1
 
         private void Novo2(object sender, EventArgs e, string ee = null)
         {
-            if (j1 != variavel[0])
+            try
             {
-                if (MessageBox.Show("Não é possivel realizar a multiplicação dessas matrizes!!" + System.Environment.NewLine + System.Environment.NewLine + "Deseja reiniciar?", "erro...", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                if (j1 != variavel[0])
                 {
-                    btnLimpar_Click(sender, e);
-                    return;
-                }
-                else
-                {
-                    return;
-                }
-            }
-            this.Controls.Remove(grp3);
-            if (ee != null)
-            {
-                string x = i1;
-                i1 = variavel[1];
-                variavel[1] = x;
-            }
-            btnT2.Visible = false;
-            traco[2] = 0;
-            tracoSec[2] = 0;
-            result[2] = 0;
-            grpzi = new Point(lblIgual.Location.X + 50, 200);
-            ponto = new Point(0, 0);
-            this.grp3 = new System.Windows.Forms.GroupBox();
-            grp3.Name = "grp1";
-            grp3.Location = grpzi;
-            int size = int.Parse(i1) * 30;
-            int size2 = int.Parse(variavel[1]) * 35;
-            grp3.Size = new Size(size2, size);
-            grp3.Visible = true;
-            this.Controls.Add(grp3);
-            subs = new Point(lblIgual.Location.X + 50, 200);
-            for (int i = 0; i < int.Parse(i1); i++)
-            {
-                for (int j = 0; j < int.Parse(variavel[1]); j++)
-                {
-                    Field novo = new Field();
-                    novo.Click += (sender2, e2) => field_Click(novo);
-                    novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1);
-                    novo.Size = new Size(35, 30);
-                    if (ee == null)
+                    if (MessageBox.Show("Não é possivel realizar a multiplicação dessas matrizes!!" + System.Environment.NewLine + System.Environment.NewLine + "Deseja reiniciar?", "erro...", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                     {
-                        for (int t = 0; t < int.Parse(j1); t++)
-                        {
-                            Control[] lbl = grp2.Controls.Find(Convert.ToString(t + 1) + "." + Convert.ToString(j + 1) + " ", true);
-                            Label lble = (Label)lbl[0];
-                            Control[] lbl2 = grp.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(t + 1), true);
-                            Label lble2 = (Label)lbl2[0];
-                            resul1 += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                            result[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                            if (i == j)
-                            {
-                                traco[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                            }
-                            if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
-                            {
-                                tracoSec[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                            }
-                        }
-                        novo.Text = resul1.ToString();
-                        resul1 = 0;
+                        btnLimpar_Click(sender, e);
+                        return;
                     }
                     else
                     {
-                        if (i == j)
-                        {
-                            traco[2] += resu[j * int.Parse(i1) + i];
-                        }
-                        if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
-                        {
-                            tracoSec[2] += resu[j * int.Parse(i1) + i];
-                        }
-                        result[2] += resu[j * int.Parse(i1) + i];
-                        novo.Text = resu[j * int.Parse(i1) + i].ToString();
-                    }                   
-                    novo.Location = ponto;
-                    novo.BorderStyle = BorderStyle.FixedSingle;
-                    novo.Font = new Font("Arial", 8);
-                    this.Controls.Add(novo);
-                    this.grp3.Controls.Add(novo);
-                    ponto.X += 35;
-                    grpzi.X += 35;
+                        return;
+                    }
                 }
-                ponto.Y += 30;
-                subs.Y += 30;
-                ponto.X = 0;
-                if (i != int.Parse(i1) - 1)
+                this.Controls.Remove(grp3);
+                if (ee != null)
                 {
-                    grpzi.X = lblIgual.Location.X + 50;
+                    string x = i1;
+                    i1 = variavel[1];
+                    variavel[1] = x;
                 }
+                btnT2.Visible = false;
+                traco[2] = 0;
+                tracoSec[2] = 0;
+                result[2] = 0;
+                grpzi = new Point(lblIgual.Location.X + 50, 200);
+                ponto = new Point(0, 0);
+                this.grp3 = new System.Windows.Forms.GroupBox();
+                grp3.Name = "grp1";
+                grp3.Location = grpzi;
+                int size = int.Parse(i1) * 30;
+                int size2 = int.Parse(variavel[1]) * 35;
+                grp3.Size = new Size(size2, size);
+                grp3.Visible = true;
+                this.Controls.Add(grp3);
+                subs = new Point(lblIgual.Location.X + 50, 200);
+                for (int i = 0; i < int.Parse(i1); i++)
+                {
+                    for (int j = 0; j < int.Parse(variavel[1]); j++)
+                    {
+                        Field novo = new Field();
+                        novo.Click += (sender2, e2) => field_Click(novo);
+                        novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1);
+                        novo.Size = new Size(35, 30);
+                        if (ee == null)
+                        {
+                            for (int t = 0; t < int.Parse(j1); t++)
+                            {
+                                Control[] lbl = grp2.Controls.Find(Convert.ToString(t + 1) + "." + Convert.ToString(j + 1) + " ", true);
+                                Label lble = (Label)lbl[0];
+                                Control[] lbl2 = grp.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(t + 1), true);
+                                Label lble2 = (Label)lbl2[0];
+                                resul1 += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                                result[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                                if (i == j)
+                                {
+                                    traco[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                                }
+                                if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                                {
+                                    tracoSec[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                                }
+                            }
+                            novo.Text = resul1.ToString();
+                            resul1 = 0;
+                        }
+                        else
+                        {
+                            if (i == j)
+                            {
+                                traco[2] += resu[j * int.Parse(i1) + i];
+                            }
+                            if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                            {
+                                tracoSec[2] += resu[j * int.Parse(i1) + i];
+                            }
+                            result[2] += resu[j * int.Parse(i1) + i];
+                            novo.Text = resu[j * int.Parse(i1) + i].ToString();
+                        }
+                        novo.Location = ponto;
+                        novo.BorderStyle = BorderStyle.FixedSingle;
+                        novo.Font = new Font("Arial", 8);
+                        this.Controls.Add(novo);
+                        this.grp3.Controls.Add(novo);
+                        ponto.X += 35;
+                        grpzi.X += 35;
+                    }
+                    ponto.Y += 30;
+                    subs.Y += 30;
+                    ponto.X = 0;
+                    if (i != int.Parse(i1) - 1)
+                    {
+                        grpzi.X = lblIgual.Location.X + 50;
+                    }
+                }
+                lblSomaE3.Location = new Point(subs.X, subs.Y + 10);
+                lblSomaE3.Visible = true;
+                if (int.Parse(variavel[0]) == 1 || int.Parse(variavel[0]) == 2)
+                {
+                    lblRes3.Location = new Point(subs.X + 33, subs.Y + 10);
+                    lblTraco3.Location = new Point(subs.X + 33, subs.Y + 30);
+                    lblTracoSec3.Location = new Point(subs.X + 56, subs.Y + 50);
+                }
+                else
+                {
+                    lblRes3.Location = new Point(subs.X + 104, subs.Y + 10);
+                    lblTraco3.Location = new Point(subs.X + 80, subs.Y + 30);
+                    lblTracoSec3.Location = new Point(subs.X + 90, subs.Y + 50);
+                }
+                btnT3.Location = new Point(grpzi.X, 177);
+                btnT3.Visible = true;
+                lblRes3.Text = result[2].ToString();
+                lblTr3.Location = new Point(subs.X, subs.Y + 30);
+                lblTr3.Visible = true;
+                lblTraco3.Text = traco[2].ToString();
+                lblTrSec3.Location = new Point(subs.X, subs.Y + 50);
+                lblTrSec3.Visible = true;
+                lblTracoSec3.Text = tracoSec[2].ToString();
+                if (ee != null)
+                {
+                    btnResOp.Enabled = false;
+                    btnT3.Focus();
+                }
+                txtForm.Focus();
             }
-            lblSomaE3.Location = new Point(subs.X, subs.Y + 10);
-            lblSomaE3.Visible = true;
-            if (int.Parse(variavel[0]) == 1 || int.Parse(variavel[0]) == 2)
+            catch (Exception ex)
             {
-                lblRes3.Location = new Point(subs.X + 33, subs.Y + 10);
-                lblTraco3.Location = new Point(subs.X + 33, subs.Y + 30);
-                lblTracoSec3.Location = new Point(subs.X + 56, subs.Y + 50);
+                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message, "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnLimpar_Click(sender, e);
             }
-            else
-            {
-                lblRes3.Location = new Point(subs.X + 104, subs.Y + 10);
-                lblTraco3.Location = new Point(subs.X + 80, subs.Y + 30);
-                lblTracoSec3.Location = new Point(subs.X + 90, subs.Y + 50);
-            }
-            btnT3.Location = new Point(grpzi.X, 177);
-            btnT3.Visible = true;
-            lblRes3.Text = result[2].ToString();
-            lblTr3.Location = new Point(subs.X, subs.Y + 30);
-            lblTr3.Visible = true;
-            lblTraco3.Text = traco[2].ToString();
-            lblTrSec3.Location = new Point(subs.X, subs.Y + 50);
-            lblTrSec3.Visible = true;
-            lblTracoSec3.Text = tracoSec[2].ToString();
-            if (ee != null)
-            {
-                btnResOp.Enabled = false;
-            }
-            txtForm.Focus();
         }
         #endregion
 
         #region leave
+       
         private void txtForm_Leave()
         {
-            string[] res1;
-            string[] res2;
-            if (txtForm.Text.IndexOf('i') > -1)
+            try
             {
-                res1 = txtForm.Text.Split(new char[] { 'i' });
-                if (res1[0] != "" && res1[0].IndexOf(mult, res1[0].Length -1, 1) == -1 && res1[0].IndexOf(div, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(soma, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(sub, res1[0].Length - 1, 1) == -1)
+                string[] res1;
+                string[] res2;
+                if (txtForm.Text.IndexOf('i') > -1)
                 {
-                    txtForm.Text = res1[0] + "*" + "i" + res1[1];
-                }
-            }
-            if (txtForm.Text.IndexOf('j') > -1)
-            {
-                res2 = txtForm.Text.Split(new char[] { 'j' });
-                if (res2[0] != "" && res2[0].IndexOf(mult, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(div, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(soma, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(sub, res2[0].Length - 1, 1) == -1)
-                {
-                    txtForm.Text = res2[0] + "*" + "j" + res2[1];
-                }
-            }
-            if (txtForm.Text.IndexOf('j') > -1 && txtForm.Text.IndexOf('i') > -1)
-            {
-                res1 = txtForm.Text.Split(new char[] { 'i' });
-                res2 = txtForm.Text.Split(new char[] { 'j' });
-                if (res1[0].IndexOf('j') > -1)
-                {
-                    if (res1[0].IndexOf(soma, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(sub, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(mult, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(div, res1[0].Length - 1, 1) == -1)
+                    res1 = txtForm.Text.Split(new char[] { 'i' });
+                    if (res1[0] != "" && res1[0].IndexOf(mult, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(div, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(soma, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(sub, res1[0].Length - 1, 1) == -1)
                     {
                         txtForm.Text = res1[0] + "*" + "i" + res1[1];
                     }
                 }
-                if (res2[0].IndexOf('i') > -1)
+                if (txtForm.Text.IndexOf('j') > -1)
                 {
-                    if (res2[0].IndexOf(soma, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(sub, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(mult, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(div, res2[0].Length - 1, 1) == -1)
+                    res2 = txtForm.Text.Split(new char[] { 'j' });
+                    if (res2[0] != "" && res2[0].IndexOf(mult, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(div, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(soma, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(sub, res2[0].Length - 1, 1) == -1)
                     {
                         txtForm.Text = res2[0] + "*" + "j" + res2[1];
                     }
                 }
+                if (txtForm.Text.IndexOf('j') > -1 && txtForm.Text.IndexOf('i') > -1)
+                {
+                    res1 = txtForm.Text.Split(new char[] { 'i' });
+                    res2 = txtForm.Text.Split(new char[] { 'j' });
+                    if (res1[0].IndexOf('j') > -1)
+                    {
+                        if (res1[0].IndexOf(soma, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(sub, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(mult, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(div, res1[0].Length - 1, 1) == -1)
+                        {
+                            txtForm.Text = res1[0] + "*" + "i" + res1[1];
+                        }
+                    }
+                    if (res2[0].IndexOf('i') > -1)
+                    {
+                        if (res2[0].IndexOf(soma, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(sub, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(mult, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(div, res2[0].Length - 1, 1) == -1)
+                        {
+                            txtForm.Text = res2[0] + "*" + "j" + res2[1];
+                        }
+                    }
+                }
             }
+            catch (Exception ex) { throw ex; }
+            
         }
         #endregion
 
         #region Transposta
         private void btnT1_Click(object sender, EventArgs e)
         {
-            this.Controls.Remove(grp);
-            conte = 0;
-            resu = new int[int.Parse(i1) * int.Parse(j1)];
-            Control[] lbl = new Control[int.Parse(i1) * int.Parse(j1)];
-            for (int i = 0; i < int.Parse(i1); i++)
+            try
             {
-                for (int j = 0; j < int.Parse(j1); j++)
+                this.Controls.Remove(grp);
+                conte = 0;
+                resu = new int[int.Parse(i1) * int.Parse(j1)];
+                Control[] lbl = new Control[int.Parse(i1) * int.Parse(j1)];
+                for (int i = 0; i < int.Parse(i1); i++)
                 {
-                    lbl = grp.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(j + 1), true);
-                    Label lbl2 = (Label)lbl[0];
-                    resu[conte] = int.Parse(lbl2.Text);
-                    conte++;
+                    for (int j = 0; j < int.Parse(j1); j++)
+                    {
+                        lbl = grp.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(j + 1), true);
+                        Label lbl2 = (Label)lbl[0];
+                        resu[conte] = int.Parse(lbl2.Text);
+                        conte++;
+                    }
                 }
+                Novo(sender, e, 0, "aa");
             }
-            Novo(sender, e, 0, "aa");
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message, "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnLimpar_Click(sender, e);
+            }
         }
 
         private void btnT2_Click(object sender, EventArgs e)
         {
-            this.Controls.Remove(grp2);
-            conte = 0;
-            resu = new int[int.Parse(variavel[0]) * int.Parse(variavel[1])];
-            Control[] lbl = new Control[int.Parse(variavel[0]) * int.Parse(variavel[1])];
-            for (int i = 0; i < int.Parse(variavel[0]); i++)
+            try
             {
-                for (int j = 0; j < int.Parse(variavel[1]); j++)
+                this.Controls.Remove(grp2);
+                conte = 0;
+                resu = new int[int.Parse(variavel[0]) * int.Parse(variavel[1])];
+                Control[] lbl = new Control[int.Parse(variavel[0]) * int.Parse(variavel[1])];
+                for (int i = 0; i < int.Parse(variavel[0]); i++)
                 {
-                    lbl = grp2.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(j + 1) + " ", true);
-                    Label lble = (Label)lbl[0];
-                    resu[conte] = int.Parse(lble.Text);
-                    conte++;
+                    for (int j = 0; j < int.Parse(variavel[1]); j++)
+                    {
+                        lbl = grp2.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(j + 1) + " ", true);
+                        Label lble = (Label)lbl[0];
+                        resu[conte] = int.Parse(lble.Text);
+                        conte++;
+                    }
                 }
+                Novo(sender, e, 1, "aa");
             }
-            Novo(sender, e, 1, "aa");
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message, "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnLimpar_Click(sender, e);
+            }
         }
 
         private void btnT3_Click(object sender, EventArgs e)
         {
-            this.Controls.Remove(grp3);
-            conte = 0;
-            resu = new int[int.Parse(i1) * int.Parse(variavel[1])];
-            Control[] lbl = new Control[int.Parse(i1) * int.Parse(variavel[1])];
-            for (int i = 0; i < int.Parse(i1); i++)
+            try
             {
-                for (int j = 0; j < int.Parse(variavel[1]); j++)
+                this.Controls.Remove(grp3);
+                conte = 0;
+                resu = new int[int.Parse(i1) * int.Parse(variavel[1])];
+                Control[] lbl = new Control[int.Parse(i1) * int.Parse(variavel[1])];
+                for (int i = 0; i < int.Parse(i1); i++)
                 {
-                    lbl = grp3.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(j + 1), true);
-                    Label lble = (Label)lbl[0];
-                    resu[conte] = int.Parse(lble.Text);
-                    conte++;
+                    for (int j = 0; j < int.Parse(variavel[1]); j++)
+                    {
+                        lbl = grp3.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(j + 1), true);
+                        Label lble = (Label)lbl[0];
+                        resu[conte] = int.Parse(lble.Text);
+                        conte++;
+                    }
                 }
+                Novo2(sender, e, "aa");
             }
-            Novo2(sender, e, "aa");
-            
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message, "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnLimpar_Click(sender, e);
+            }
+
         }
-        #endregion
+        #endregion        
     }
 }
