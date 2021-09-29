@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -22,16 +21,18 @@ namespace WindowsFormsApplication1
         MatchCollection collect;
 
         int resul1 = 0;
-        int cont = 0;
         int ia = 0;
+        int conte = 0;
         int[] result = { 0, 0, 0 };
         int[] traco = { 0, 0, 0 };
         int[] tracoSec = { 0, 0, 0 };
+        int[] resu;
         bool x = false;
-        int click = 0;
+        int click = -1;
         int a = 20;
         string j1;
         string i1;
+        string[] variavel;
 
         Point ponto;
         Point ponti;
@@ -41,35 +42,40 @@ namespace WindowsFormsApplication1
 
         private System.Windows.Forms.GroupBox grp;
         private System.Windows.Forms.GroupBox grp2;
+        private System.Windows.Forms.GroupBox grp3;
         #endregion
 
         #region consistir
-        public bool consistir()
+        public bool consistir(string ee)
         {
             try
             {
-                errinho.Clear();
-                x = false;
-                string[] valv = mskTabela.Text.Split(new char[] { '.' });
-                if (!mskTabela.MaskCompleted)
+                if (ee == null)
                 {
-                    errinho.SetError(mskTabela, "preencha o campo corretamente!!");
-                    x = true;
+                    errinho.Clear();
+                    x = false;
+                    string[] valv = mskTabela.Text.Split(new char[] { '.' });
+                    if (!mskTabela.MaskCompleted)
+                    {
+                        errinho.SetError(mskTabela, "preencha o campo corretamente!!");
+                        x = true;
+                    }
+                    if (string.IsNullOrEmpty(txtForm.Text))
+                    {
+                        errinho.SetError(txtForm, "preencha o campo!!");
+                        x = true;
+                    }
+                    if (valv[0] == "0" || valv[1] == "0")
+                    {
+                        errinho.SetError(mskTabela, "Não existe matriz com linha ou coluna 0!!");
+                        x = true;
+                    }
+                    if (x)
+                        return false;
+                    else
+                        return true;
                 }
-                if (string.IsNullOrEmpty(txtForm.Text))
-                {
-                    errinho.SetError(txtForm, "preencha o campo!!");
-                    x = true;
-                }
-                if (valv[0] == "0" || valv[1] == "0")
-                {
-                    errinho.SetError(mskTabela, "Não existe matriz com linha ou coluna 0!!");
-                    x = true;
-                }
-                if (x)
-                    return false;
-                else
-                    return true;
+                else return true;
             }
             catch (Exception ex) { throw ex; }
         }
@@ -82,16 +88,48 @@ namespace WindowsFormsApplication1
         }
         private void btnGerar_Click(object sender, EventArgs e)
         {
+            click++;
+            if (click < 3)
+            Novo(sender, e, click);
+        }
+
+        public void Novo(object sender, EventArgs e, int cont, string ee = null)
+        {
             try
             {
-                click += 1;
-                if (consistir() && click < 3)
+                if (consistir(ee))
                 {
-                    txtForm_Leave(sender, e);
+                    a = 20;
+                    conte = 0;
+                    txtForm_Leave();
                     lblEx.Visible = false;
                     errinho.Clear();
                     List<Match> listinha = new List<Match>();
-                    string[] variavel = mskTabela.Text.Split(new char[] { '.' });
+                    string[] comeco = new string[2];
+                    if (ee == null)
+                    {
+                        comeco = mskTabela.Text.Split(new char[] { '.' });
+                        variavel = new string[] { comeco[0], comeco[1] };
+                    }
+                    else
+                    {
+                        comeco[0] = variavel[0];
+                        variavel[0] = variavel[1];
+                        variavel[1] = comeco[0];
+                        if (cont == 0)
+                        {
+                            traco[0] = 0;
+                            tracoSec[0] = 0;
+                            result[0] = 0;
+                        }
+                        else
+                        {
+                            traco[1] = 0;
+                            tracoSec[1] = 0;
+                            result[1] = 0;
+                        }
+                        
+                    }
                     if (cont == 0)
                     {
                         i1 = variavel[0];
@@ -164,22 +202,45 @@ namespace WindowsFormsApplication1
                     {
                         for (int j = 0; j < int.Parse(variavel[1]); j++)
                         {
-                            if (i == j && cont == 0)
+                            if (ee == null)
                             {
-                                traco[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
-                            }
-                            else if (i == j)
-                            {
-                                traco[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
-                            }
+                                if (i == j && cont == 0)
+                                {
+                                    traco[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
+                                else if (i == j)
+                                {
+                                    traco[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
 
-                            if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1 && cont == 0)
-                            {
-                                tracoSec[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1 && cont == 0)
+                                {
+                                    tracoSec[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
+                                else if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                                {
+                                    tracoSec[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
                             }
-                            else if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                            else
                             {
-                                tracoSec[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                if (i == j && cont == 0)
+                                {
+                                    traco[0] += resu[j * int.Parse(variavel[0]) + i];
+                                }
+                                else if (i == j)
+                                {
+                                    traco[1] += resu[j * int.Parse(variavel[0]) + i];
+                                }
+
+                                if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1 && cont == 0)
+                                {
+                                    tracoSec[0] += resu[j * int.Parse(variavel[0]) + i];
+                                }
+                                else if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                                {
+                                    tracoSec[1] += resu[j * int.Parse(variavel[0]) + i];
+                                }
                             }
                             Field novo = new Field();
                             novo.Click += (sender2, e2) => field_Click(novo);
@@ -191,15 +252,31 @@ namespace WindowsFormsApplication1
                             {
                                 novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1) + " ";
                             }
-                            novo.Text = returnName(createIntList(i + 1, j + 1, res), listinha);
-                            if (cont == 0)
+                            if (ee == null)
                             {
-                                result[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                novo.Text = returnName(createIntList(i + 1, j + 1, res), listinha);
+                                if(cont == 0)
+                                {
+                                    result[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
+                                else
+                                {
+                                    result[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                }
                             }
                             else
                             {
-                                result[1] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
+                                novo.Text = resu[j * int.Parse(variavel[0]) + i].ToString();
+                                if (cont == 0)
+                                {
+                                    result[0] += resu[j * int.Parse(variavel[0]) + i];
+                                }
+                                else
+                                {
+                                    result[1] += resu[j * int.Parse(variavel[0]) + i];
+                                }
                             }
+                            
                             novo.Size = new Size(30, 30);
                             if (cont == 0)
                             {
@@ -215,23 +292,15 @@ namespace WindowsFormsApplication1
                             if (cont == 0)
                             {
                                 this.grp.Controls.Add(novo);
-                            }
-                            else
-                            {
-                                this.grp2.Controls.Add(novo);
-                            }
-
-                            if (cont == 0)
-                            {
                                 ponto.X += 30;
                                 grpzi.X += 30;
                             }
                             else
                             {
+                                this.grp2.Controls.Add(novo);
                                 ponti.X += 30;
                                 grpzi2.X += 30;
                             }
-
                         }
                         if (cont == 0)
                         {
@@ -275,6 +344,8 @@ namespace WindowsFormsApplication1
                             ia = (int.Parse(variavel[0]) / 2) * 40;
                         lblSinal.Location = new Point(grpzi.X, grpzi.Y - ia);
                         lblSinal.Visible = true;
+                        btnT1.Location = new Point(grpzi.X - 20, 177);
+                        btnT1.Visible = true;
                         lblSomaE.Location = new Point(20, grpzi.Y + 10);
                         lblSomaE.Visible = true;
                         if (int.Parse(variavel[1]) == 1 || int.Parse(variavel[1]) == 2)
@@ -297,6 +368,15 @@ namespace WindowsFormsApplication1
                             lblRes.Location = new Point(124, grpzi.Y + 10);
                             lblTraco.Location = new Point(100, grpzi.Y + 30);
                             lblTracoSec.Location = new Point(110, grpzi.Y + 50);
+                            lblSomaE.Text = "Soma dos elementos:";
+                            lblSomaE2.Text = "Soma dos elementos:";
+                            lblSomaE3.Text = "Soma dos elementos:";
+                            lblTr.Text = "Traço da matriz:";
+                            lblTr2.Text = "Traço da matriz:";
+                            lblTr3.Text = "Traço da matriz:";
+                            lblTrSec.Text = "Traço secundario:";
+                            lblTrSec2.Text = "Traço secundario:";
+                            lblTrSec3.Text = "Traço secundario:";
                         }
                         lblRes.Text = result[0].ToString();
                         lblTr.Location = new Point(20, grpzi.Y + 30);
@@ -306,23 +386,33 @@ namespace WindowsFormsApplication1
                         lblTrSec.Visible = true;
                         lblTracoSec.Text = tracoSec[0].ToString();
                         chxAlteração.Visible = true;
+                        mskTabela.Text = j1.ToString();
+                        mskTabela.Focus();
+                        cont++;
                     }
                     else
                     {
+                        btnT1.Visible = false;
                         lblSomaE2.Location = new Point(grpzi2.X, grpzi2.Y + 10);
                         lblSomaE2.Visible = true;
                         lblRes2.Text = result[1].ToString();
-                        if (int.Parse(j1) == 1 || int.Parse(j1) == 2)
+                        if (int.Parse(j1) == 1 || int.Parse(j1) == 2 || int.Parse(variavel[1]) == 1 || int.Parse(variavel[1]) == 2)
                         {
                             lblRes2.Location = new Point(grpzi2.X + 33, grpzi2.Y + 10);
                             lblTraco2.Location = new Point(grpzi2.X + 33, grpzi2.Y + 30);
                             lblTracoSec2.Location = new Point(grpzi2.X + 56, grpzi2.Y + 50);
+                            lblSomaE2.Text = "Soma";
+                            lblTr2.Text = "Traço";
+                            lblTrSec2.Text = "Secundario";
                         }
                         else
                         {
                             lblRes2.Location = new Point(grpzi2.X + 104, grpzi2.Y + 10);
                             lblTraco2.Location = new Point(grpzi2.X + 80, grpzi2.Y + 30);
                             lblTracoSec2.Location = new Point(grpzi2.X + 90, grpzi2.Y + 50);
+                            lblSomaE2.Text = "Soma dos elementos:";
+                            lblTr2.Text = "Traço da matriz:";
+                            lblTrSec2.Text = "Traço secundario:";
                         }
                         lblTr2.Location = new Point(grpzi2.X, grpzi2.Y + 30);
                         lblTr2.Visible = true;
@@ -330,26 +420,27 @@ namespace WindowsFormsApplication1
                         lblTrSec2.Location = new Point(grpzi2.X, grpzi2.Y + 50);
                         lblTrSec2.Visible = true;
                         lblTracoSec2.Text = tracoSec[1].ToString();
+                        btnT2.Location = new Point(subs.X + 5, 177);
+                        btnT2.Visible = true;
                         lblIgual.Location = new Point(subs.X + 5, lblSinal.Location.Y);
                         lblIgual.Visible = true;
                         btnResOp.Visible = true;
                         btnGerar.Enabled = false;
                         mskTabela.Enabled = false;
+                        txtForm.Enabled = false;
+                        btnResOp.Focus();
                     }
-                    if (cont == 0)
-                    {
-                        cont += 1;
-                    }
-                    txtForm.Focus();
                 }
             }
+        
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message);
+                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message, "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnLimpar_Click(sender, e);
             }
         }
 
+        #region formula
         public List<int> createIntList(int i, int j, string[] res)
         {
             try
@@ -429,6 +520,8 @@ namespace WindowsFormsApplication1
         }
         #endregion
 
+        #endregion
+
         #region field click
         private void field_Click(Field field)
         {
@@ -466,6 +559,9 @@ namespace WindowsFormsApplication1
             lblIgual.Visible = false;
             chxAlteração.Visible = false;
 
+            btnT1.Visible = false;
+            btnT2.Visible = false;
+            btnT3.Visible = false;
             btnResOp.Visible = false;
             lblTrSec.Visible = false;
             lblSomaE.Visible = false;
@@ -484,13 +580,16 @@ namespace WindowsFormsApplication1
             mskTabela.Focus();
         }
         #endregion
-
+    
         #region Limpar
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             errinho.Clear();
             lblSinal.Visible = false;
 
+            btnT1.Visible = false;
+            btnT2.Visible = false;
+            btnT3.Visible = false;
             lblTrSec.Visible = false;
             lblSomaE.Visible = false;
             lblTr.Visible = false;
@@ -523,14 +622,16 @@ namespace WindowsFormsApplication1
             mskTabela.Text = "";
             chxAlteração.Visible = false;
             mskTabela.Enabled = true;
+            txtForm.Enabled = true;
             txtForm.Text = "";
             btnGerar.Enabled = true;
             btnResOp.Visible = false;
+            btnResOp.Enabled = true;
             this.Controls.Remove(grp);
             this.Controls.Remove(grp2);
+            this.Controls.Remove(grp3);
 
             ia = 0;
-            click = 0;
             result[0] = 0;
             result[1] = 0;
             result[2] = 0;
@@ -542,15 +643,8 @@ namespace WindowsFormsApplication1
             tracoSec[2] = 0;
             x = false;
             a = 20;
+            click = -1;
 
-            if (cont > 0)
-            {
-                foreach (Control item in Controls.OfType<Field>().ToList())
-                {
-                    Controls.Remove(item);
-                }
-            }
-            cont = 0;
 
             lblEx.Visible = true;
             mskTabela.Focus();
@@ -560,22 +654,17 @@ namespace WindowsFormsApplication1
         #endregion
 
         #region teclas
-        private void mskTabela_KeyDown(object sender, KeyEventArgs e)
-        {
-            Teclas(sender, e);
-        }
-
         private void Teclas(object sender, KeyEventArgs e)
         {
             if (mskTabela.MaskCompleted && e.KeyCode != Keys.Back)
             {
                 txtForm.Focus();
             }
-            if (e.KeyCode == Keys.F3)
+            if (e.KeyCode == Keys.F4)
             {
                 btnGerar_Click(sender, e);
             }
-            if (e.KeyCode == Keys.F4)
+            if (e.KeyCode == Keys.F3)
             {
                 btnLimpar_Click(sender, e);
             }
@@ -591,141 +680,315 @@ namespace WindowsFormsApplication1
             {
                 mskTabela.Focus();
             }
-        }
-
-        private void txtForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            Teclas(sender, e);
+            if (e.KeyCode == Keys.F6)
+            {
+                if (chxAlteração.Visible)
+                {
+                    if (chxAlteração.Checked)
+                    {
+                        chxAlteração.Checked = false;
+                    }
+                    else
+                    {
+                        chxAlteração.Checked = true;
+                    }
+                }
+            }
+            if (e.KeyCode == Keys.T)
+            {
+                if (txtForm.Focused)
+                {
+                    string[] t = txtForm.Text.Split(new char[] { 't' });
+                    txtForm.Text = t[0];
+                }
+                if (btnT1.Visible)
+                {
+                    btnT1_Click(sender, e);
+                }
+                else if (btnT2.Visible)
+                {
+                    btnT2_Click(sender, e);
+                }
+                else if (btnT3.Visible)
+                {
+                    btnT3_Click(sender, e);
+                }
+            }
         }
         #endregion
 
         #region Resultado click
         private void btnResOp_Click(object sender, EventArgs e)
         {
-            string[] variavel = mskTabela.Text.Split(new char[] { '.' });
-            if (j1 != variavel[0])
+            Novo2(sender, e);
+        }
+
+        private void Novo2(object sender, EventArgs e, string ee = null)
+        {
+            try
             {
-                if (MessageBox.Show("Não é possivel realizar a multiplicação dessas matrizes!!" + System.Environment.NewLine + System.Environment.NewLine + "Deseja reiniciar?", "erro...", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                if (j1 != variavel[0])
                 {
-                    btnLimpar_Click(sender, e);
-                    return;
+                    if (MessageBox.Show("Não é possivel realizar a multiplicação dessas matrizes!!" + System.Environment.NewLine + System.Environment.NewLine + "Deseja reiniciar?", "erro...", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                    {
+                        btnLimpar_Click(sender, e);
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                this.Controls.Remove(grp3);
+                if (ee != null)
+                {
+                    string x = i1;
+                    i1 = variavel[1];
+                    variavel[1] = x;
+                }
+                btnT2.Visible = false;
+                traco[2] = 0;
+                tracoSec[2] = 0;
+                result[2] = 0;
+                grpzi = new Point(lblIgual.Location.X + 50, 200);
+                ponto = new Point(0, 0);
+                this.grp3 = new System.Windows.Forms.GroupBox();
+                grp3.Name = "grp1";
+                grp3.Location = grpzi;
+                int size = int.Parse(i1) * 30;
+                int size2 = int.Parse(variavel[1]) * 35;
+                grp3.Size = new Size(size2, size);
+                grp3.Visible = true;
+                this.Controls.Add(grp3);
+                subs = new Point(lblIgual.Location.X + 50, 200);
+                for (int i = 0; i < int.Parse(i1); i++)
+                {
+                    for (int j = 0; j < int.Parse(variavel[1]); j++)
+                    {
+                        Field novo = new Field();
+                        novo.Click += (sender2, e2) => field_Click(novo);
+                        novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1);
+                        novo.Size = new Size(35, 30);
+                        if (ee == null)
+                        {
+                            for (int t = 0; t < int.Parse(j1); t++)
+                            {
+                                Control[] lbl = grp2.Controls.Find(Convert.ToString(t + 1) + "." + Convert.ToString(j + 1) + " ", true);
+                                Label lble = (Label)lbl[0];
+                                Control[] lbl2 = grp.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(t + 1), true);
+                                Label lble2 = (Label)lbl2[0];
+                                resul1 += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                                result[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                                if (i == j)
+                                {
+                                    traco[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                                }
+                                if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                                {
+                                    tracoSec[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                                }
+                            }
+                            novo.Text = resul1.ToString();
+                            resul1 = 0;
+                        }
+                        else
+                        {
+                            if (i == j)
+                            {
+                                traco[2] += resu[j * int.Parse(i1) + i];
+                            }
+                            if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
+                            {
+                                tracoSec[2] += resu[j * int.Parse(i1) + i];
+                            }
+                            result[2] += resu[j * int.Parse(i1) + i];
+                            novo.Text = resu[j * int.Parse(i1) + i].ToString();
+                        }
+                        novo.Location = ponto;
+                        novo.BorderStyle = BorderStyle.FixedSingle;
+                        novo.Font = new Font("Arial", 8);
+                        this.Controls.Add(novo);
+                        this.grp3.Controls.Add(novo);
+                        ponto.X += 35;
+                        grpzi.X += 35;
+                    }
+                    ponto.Y += 30;
+                    subs.Y += 30;
+                    ponto.X = 0;
+                    if (i != int.Parse(i1) - 1)
+                    {
+                        grpzi.X = lblIgual.Location.X + 50;
+                    }
+                }
+                lblSomaE3.Location = new Point(subs.X, subs.Y + 10);
+                lblSomaE3.Visible = true;
+                if (int.Parse(variavel[0]) == 1 || int.Parse(variavel[0]) == 2)
+                {
+                    lblRes3.Location = new Point(subs.X + 33, subs.Y + 10);
+                    lblTraco3.Location = new Point(subs.X + 33, subs.Y + 30);
+                    lblTracoSec3.Location = new Point(subs.X + 56, subs.Y + 50);
                 }
                 else
                 {
-                    return;
+                    lblRes3.Location = new Point(subs.X + 104, subs.Y + 10);
+                    lblTraco3.Location = new Point(subs.X + 80, subs.Y + 30);
+                    lblTracoSec3.Location = new Point(subs.X + 90, subs.Y + 50);
                 }
-            }
-            traco[2] = 0;
-            tracoSec[2] = 0;
-            result[2] = 0;
-            foreach (Control item in Controls.OfType<Field>().ToList())
-            {
-                Controls.Remove(item);
-            }
-            subs = new Point(lblIgual.Location.X + 50, 200);
-            for (int i = 0; i < int.Parse(i1); i++)
-            {
-                for (int j = 0; j < int.Parse(variavel[1]); j++)
+                btnT3.Location = new Point(grpzi.X, 177);
+                btnT3.Visible = true;
+                lblRes3.Text = result[2].ToString();
+                lblTr3.Location = new Point(subs.X, subs.Y + 30);
+                lblTr3.Visible = true;
+                lblTraco3.Text = traco[2].ToString();
+                lblTrSec3.Location = new Point(subs.X, subs.Y + 50);
+                lblTrSec3.Visible = true;
+                lblTracoSec3.Text = tracoSec[2].ToString();
+                if (ee != null)
                 {
-                    Field novo = new Field();
-                    novo.Click += (sender2, e2) => field_Click(novo);
-                    novo.Name = Convert.ToString(i + 1) + "." + Convert.ToString(j + 1);
-                    novo.Size = new Size(30, 30);
-                    for (int t = 0; t < int.Parse(j1); t++)
-                    {
-                        Control[] lbl = grp2.Controls.Find(Convert.ToString(t + 1) + "." + Convert.ToString(j + 1) + " ", true);
-                        Label lble = (Label)lbl[0];
-                        Control[] lbl2 = grp.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(t + 1), true);
-                        Label lble2 = (Label)lbl2[0];
-                        resul1 += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                        result[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                        if (i == j)
-                        {
-                            traco[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                        }
-                        if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
-                        {
-                            tracoSec[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                        }
-                    }
-                    novo.Text = resul1.ToString();
-                    resul1 = 0;
-                    novo.Location = subs;
-                    novo.BorderStyle = BorderStyle.FixedSingle;
-                    novo.Font = new Font("Arial", 8);
-                    this.Controls.Add(novo);
-
-                    subs.X += 30;
+                    btnResOp.Enabled = false;
+                    btnT3.Focus();
                 }
-                subs.Y += 30;
-                subs.X = lblIgual.Location.X + 50;
+                txtForm.Focus();
             }
-            lblSomaE3.Location = new Point(subs.X, subs.Y + 10);
-            lblSomaE3.Visible = true;
-            if (int.Parse(variavel[0]) == 1 || int.Parse(variavel[0]) == 2)
+            catch (Exception ex)
             {
-                lblRes3.Location = new Point(subs.X + 33, subs.Y + 10);
-                lblTraco3.Location = new Point(subs.X + 33, subs.Y + 30);
-                lblTracoSec3.Location = new Point(subs.X + 56, subs.Y + 50);
+                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message, "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnLimpar_Click(sender, e);
             }
-            else
-            {
-                lblRes3.Location = new Point(subs.X + 104, subs.Y + 10);
-                lblTraco3.Location = new Point(subs.X + 80, subs.Y + 30);
-                lblTracoSec3.Location = new Point(subs.X + 90, subs.Y + 50);
-            }
-            lblRes3.Text = result[2].ToString();
-            lblTr3.Location = new Point(subs.X, subs.Y + 30);
-            lblTr3.Visible = true;
-            lblTraco3.Text = traco[2].ToString();
-            lblTrSec3.Location = new Point(subs.X, subs.Y + 50);
-            lblTrSec3.Visible = true;
-            lblTracoSec3.Text = tracoSec[2].ToString();
-            txtForm.Focus();
         }
         #endregion
 
         #region leave
-        private void txtForm_Leave(object sender, EventArgs e)
+       
+        private void txtForm_Leave()
         {
-            string[] res1;
-            string[] res2;
-            if (txtForm.Text.IndexOf('i') > -1)
+            try
             {
-                res1 = txtForm.Text.Split(new char[] { 'i' });
-                if (res1[0] != "" && res1[0].IndexOf(mult, res1[0].Length -1, 1) == -1 && res1[0].IndexOf(div, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(soma, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(sub, res1[0].Length - 1, 1) == -1)
+                string[] res1;
+                string[] res2;
+                if (txtForm.Text.IndexOf('i') > -1)
                 {
-                    txtForm.Text = res1[0] + "*" + "i" + res1[1];
-                }
-            }
-            if (txtForm.Text.IndexOf('j') > -1)
-            {
-                res2 = txtForm.Text.Split(new char[] { 'j' });
-                if (res2[0] != "" && res2[0].IndexOf(mult, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(div, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(soma, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(sub, res2[0].Length - 1, 1) == -1)
-                {
-                    txtForm.Text = res2[0] + "*" + "j" + res2[1];
-                }
-            }
-            if (txtForm.Text.IndexOf('j') > -1 && txtForm.Text.IndexOf('i') > -1)
-            {
-                res1 = txtForm.Text.Split(new char[] { 'i' });
-                res2 = txtForm.Text.Split(new char[] { 'j' });
-                if (res1[0].IndexOf('j') > -1)
-                {
-                    if (res1[0].IndexOf(soma, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(sub, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(mult, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(div, res1[0].Length - 1, 1) == -1)
+                    res1 = txtForm.Text.Split(new char[] { 'i' });
+                    if (res1[0] != "" && res1[0].IndexOf(mult, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(div, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(soma, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(sub, res1[0].Length - 1, 1) == -1)
                     {
                         txtForm.Text = res1[0] + "*" + "i" + res1[1];
                     }
                 }
-                if (res2[0].IndexOf('i') > -1)
+                if (txtForm.Text.IndexOf('j') > -1)
                 {
-                    if (res2[0].IndexOf(soma, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(sub, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(mult, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(div, res2[0].Length - 1, 1) == -1)
+                    res2 = txtForm.Text.Split(new char[] { 'j' });
+                    if (res2[0] != "" && res2[0].IndexOf(mult, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(div, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(soma, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(sub, res2[0].Length - 1, 1) == -1)
                     {
                         txtForm.Text = res2[0] + "*" + "j" + res2[1];
                     }
                 }
+                if (txtForm.Text.IndexOf('j') > -1 && txtForm.Text.IndexOf('i') > -1)
+                {
+                    res1 = txtForm.Text.Split(new char[] { 'i' });
+                    res2 = txtForm.Text.Split(new char[] { 'j' });
+                    if (res1[0].IndexOf('j') > -1)
+                    {
+                        if (res1[0].IndexOf(soma, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(sub, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(mult, res1[0].Length - 1, 1) == -1 && res1[0].IndexOf(div, res1[0].Length - 1, 1) == -1)
+                        {
+                            txtForm.Text = res1[0] + "*" + "i" + res1[1];
+                        }
+                    }
+                    if (res2[0].IndexOf('i') > -1)
+                    {
+                        if (res2[0].IndexOf(soma, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(sub, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(mult, res2[0].Length - 1, 1) == -1 && res2[0].IndexOf(div, res2[0].Length - 1, 1) == -1)
+                        {
+                            txtForm.Text = res2[0] + "*" + "j" + res2[1];
+                        }
+                    }
+                }
             }
+            catch (Exception ex) { throw ex; }
+            
         }
         #endregion
+
+        #region Transposta
+        private void btnT1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Controls.Remove(grp);
+                conte = 0;
+                resu = new int[int.Parse(i1) * int.Parse(j1)];
+                Control[] lbl = new Control[int.Parse(i1) * int.Parse(j1)];
+                for (int i = 0; i < int.Parse(i1); i++)
+                {
+                    for (int j = 0; j < int.Parse(j1); j++)
+                    {
+                        lbl = grp.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(j + 1), true);
+                        Label lbl2 = (Label)lbl[0];
+                        resu[conte] = int.Parse(lbl2.Text);
+                        conte++;
+                    }
+                }
+                Novo(sender, e, 0, "aa");
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message, "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnLimpar_Click(sender, e);
+            }
+        }
+
+        private void btnT2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Controls.Remove(grp2);
+                conte = 0;
+                resu = new int[int.Parse(variavel[0]) * int.Parse(variavel[1])];
+                Control[] lbl = new Control[int.Parse(variavel[0]) * int.Parse(variavel[1])];
+                for (int i = 0; i < int.Parse(variavel[0]); i++)
+                {
+                    for (int j = 0; j < int.Parse(variavel[1]); j++)
+                    {
+                        lbl = grp2.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(j + 1) + " ", true);
+                        Label lble = (Label)lbl[0];
+                        resu[conte] = int.Parse(lble.Text);
+                        conte++;
+                    }
+                }
+                Novo(sender, e, 1, "aa");
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message, "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnLimpar_Click(sender, e);
+            }
+        }
+
+        private void btnT3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Controls.Remove(grp3);
+                conte = 0;
+                resu = new int[int.Parse(i1) * int.Parse(variavel[1])];
+                Control[] lbl = new Control[int.Parse(i1) * int.Parse(variavel[1])];
+                for (int i = 0; i < int.Parse(i1); i++)
+                {
+                    for (int j = 0; j < int.Parse(variavel[1]); j++)
+                    {
+                        lbl = grp3.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(j + 1), true);
+                        Label lble = (Label)lbl[0];
+                        resu[conte] = int.Parse(lble.Text);
+                        conte++;
+                    }
+                }
+                Novo2(sender, e, "aa");
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Ocorreu um erro durante o processo erro: " + ex.Message, "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnLimpar_Click(sender, e);
+            }
+
+        }
+        #endregion        
     }
 }

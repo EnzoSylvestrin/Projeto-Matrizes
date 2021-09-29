@@ -269,7 +269,7 @@ namespace WindowsFormsApplication1
                         lblSinal.Visible = true;
                         lblSomaE.Location = new Point(20, grpzi.Y + 10);
                         lblSomaE.Visible = true;
-                        if (int.Parse(variavel[0]) == 1 || int.Parse(variavel[0]) == 2)
+                        if (int.Parse(variavel[1]) == 1 || int.Parse(variavel[1]) == 2)
                         {
                             lblRes.Location = new Point(52, grpzi.Y + 10);
                             lblTraco.Location = new Point(52, grpzi.Y + 30);
@@ -305,7 +305,7 @@ namespace WindowsFormsApplication1
                         lblSomaE2.Location = new Point(grpzi2.X, grpzi2.Y + 10);
                         lblSomaE2.Visible = true;
                         lblRes2.Text = result[1].ToString();
-                        if (int.Parse(variavel[0]) == 1 || int.Parse(variavel[0]) == 2)
+                        if (int.Parse(variavel[1]) == 1 || int.Parse(variavel[1]) == 2)
                         {
                             lblRes2.Location = new Point(grpzi2.X + 33, grpzi2.Y + 10);
                             lblTraco2.Location = new Point(grpzi2.X + 33, grpzi2.Y + 30);
@@ -341,7 +341,8 @@ namespace WindowsFormsApplication1
                 btnLimpar_Click(sender, e);
             }
         }
-        
+
+        #region formula
         public List<int> createIntList(int i, int j, string[] res)
         {
             try
@@ -419,7 +420,9 @@ namespace WindowsFormsApplication1
             }
             catch (Exception ex) { throw ex; }
         }
-#endregion
+        #endregion
+
+        #endregion
 
         #region field click
         private void field_Click(Field field)
@@ -591,11 +594,11 @@ namespace WindowsFormsApplication1
             {
                 txtForm.Focus();
             }
-            if (e.KeyCode == Keys.F3)
+            if (e.KeyCode == Keys.F4)
             {
                 btnGerar_Click(sender, e);
             }
-            if (e.KeyCode == Keys.F4)
+            if (e.KeyCode == Keys.F3)
             {
                 btnLimpar_Click(sender, e);
             }
@@ -698,7 +701,7 @@ namespace WindowsFormsApplication1
             }
             lblSomaE3.Location = new Point(subs.X, subs.Y + 10);
             lblSomaE3.Visible = true;
-            if (int.Parse(variavel[0]) == 1 || int.Parse(variavel[0]) == 2)
+            if (int.Parse(variavel[1]) == 1 || int.Parse(variavel[1]) == 2)
             {
                 lblRes3.Location = new Point(subs.X + 33, subs.Y + 10);
                 lblTraco3.Location = new Point(subs.X + 33, subs.Y + 30);
