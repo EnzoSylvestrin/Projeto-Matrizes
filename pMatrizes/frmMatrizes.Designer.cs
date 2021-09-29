@@ -368,9 +368,6 @@
         private System.Windows.Forms.TextBox txtSinalMD;
         private System.Windows.Forms.Label lblTracoSec;
         private System.Windows.Forms.Label lblTrSec;
-
-
-
     }
 }
 

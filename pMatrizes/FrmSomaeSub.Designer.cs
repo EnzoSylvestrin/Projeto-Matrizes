@@ -59,6 +59,7 @@
             this.lblRes3 = new System.Windows.Forms.Label();
             this.lblSomaE3 = new System.Windows.Forms.Label();
             this.chxAlteração = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.grpFormula.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errinho)).BeginInit();
             this.SuspendLayout();
@@ -125,20 +126,21 @@
             // 
             // grpFormula
             // 
+            this.grpFormula.Controls.Add(this.label1);
             this.grpFormula.Controls.Add(this.btnLimpar);
             this.grpFormula.Controls.Add(this.mskTabela);
             this.grpFormula.Controls.Add(this.lblTabela);
             this.grpFormula.Controls.Add(this.btnGerar);
             this.grpFormula.Controls.Add(this.txtForm);
-            this.grpFormula.Location = new System.Drawing.Point(19, 89);
+            this.grpFormula.Location = new System.Drawing.Point(19, 72);
             this.grpFormula.Name = "grpFormula";
-            this.grpFormula.Size = new System.Drawing.Size(231, 88);
+            this.grpFormula.Size = new System.Drawing.Size(236, 105);
             this.grpFormula.TabIndex = 41;
             this.grpFormula.TabStop = false;
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(78, 49);
+            this.btnLimpar.Location = new System.Drawing.Point(65, 67);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(50, 25);
             this.btnLimpar.TabIndex = 50;
@@ -148,7 +150,7 @@
             // 
             // mskTabela
             // 
-            this.mskTabela.Location = new System.Drawing.Point(108, 14);
+            this.mskTabela.Location = new System.Drawing.Point(75, 41);
             this.mskTabela.Mask = "0,0";
             this.mskTabela.Name = "mskTabela";
             this.mskTabela.Size = new System.Drawing.Size(24, 20);
@@ -158,7 +160,7 @@
             // lblTabela
             // 
             this.lblTabela.AutoSize = true;
-            this.lblTabela.Location = new System.Drawing.Point(14, 21);
+            this.lblTabela.Location = new System.Drawing.Point(7, 25);
             this.lblTabela.Name = "lblTabela";
             this.lblTabela.Size = new System.Drawing.Size(98, 13);
             this.lblTabela.TabIndex = 26;
@@ -166,7 +168,7 @@
             // 
             // btnGerar
             // 
-            this.btnGerar.Location = new System.Drawing.Point(140, 49);
+            this.btnGerar.Location = new System.Drawing.Point(130, 67);
             this.btnGerar.Name = "btnGerar";
             this.btnGerar.Size = new System.Drawing.Size(54, 25);
             this.btnGerar.TabIndex = 25;
@@ -176,7 +178,7 @@
             // 
             // txtForm
             // 
-            this.txtForm.Location = new System.Drawing.Point(153, 14);
+            this.txtForm.Location = new System.Drawing.Point(130, 41);
             this.txtForm.Name = "txtForm";
             this.txtForm.Size = new System.Drawing.Size(63, 20);
             this.txtForm.TabIndex = 24;
@@ -329,6 +331,15 @@
             this.chxAlteração.Text = "Alteração";
             this.chxAlteração.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(127, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 52;
+            this.label1.Text = "Padrão:";
+            // 
             // FrmSomaeSub
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -401,5 +412,6 @@
         private System.Windows.Forms.Label lblRes3;
         private System.Windows.Forms.Label lblSomaE3;
         private System.Windows.Forms.CheckBox chxAlteração;
+        private System.Windows.Forms.Label label1;
     }
 }
