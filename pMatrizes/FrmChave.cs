@@ -161,435 +161,126 @@ namespace WindowsFormsApplication1
 
         private void btnGerarChave_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Isso pode demorar alguns segundos deseja continuar?", "Alerta...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                while (Gerar() == "vorta")
-                {
-                    Gerar();
-                }
-            }
-        }
-        #endregion
-
-        #region Gerar
-        private string Gerar()
-        {
             int resul = 0;
             string simb = "";
             Random rd = new Random();
             List<int> lst = new List<int>();
-            List<string> lst2 = new List<string>();
-
             for (int i = 0; i < 26; i++)
             {
-                resul = rd.Next(1, 26);
-                if (resul == 1 && !lst.Contains(1))
+                resul = rd.Next(1, 27);
+                while (lst.Contains(resul))
                 {
-                    simb = "A";
-                    lst.Add(1);
+                    resul = rd.Next(1, 27);
                 }
-                else if (resul == 1)
+                switch (resul)
                 {
-                    resul = rd.Next(2, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(2, 26);
-                        else
-                            break;
-                    }
+                    case 1:
+                        simb = "A";
+                        lst.Add(resul);
+                        break;
+                    case 2:
+                        simb = "B";
+                        lst.Add(resul);
+                        break;
+                    case 3:
+                        simb = "C";
+                        lst.Add(resul);
+                        break;
+                    case 4:
+                        simb = "D";
+                        lst.Add(resul);
+                        break;
+                    case 5:
+                        simb = "E";
+                        lst.Add(resul);
+                        break;
+                    case 6:
+                        simb = "F";
+                        lst.Add(resul);
+                        break;
+                    case 7:
+                        simb = "G";
+                        lst.Add(resul);
+                        break;
+                    case 8:
+                        simb = "H";
+                        lst.Add(resul);
+                        break;
+                    case 9:
+                        simb = "I";
+                        lst.Add(resul);
+                        break;
+                    case 10:
+                        simb = "J";
+                        lst.Add(resul);
+                        break;
+                    case 11:
+                        simb = "K";
+                        lst.Add(resul);
+                        break;
+                    case 12:
+                        simb = "L";
+                        lst.Add(resul);
+                        break;
+                    case 13:
+                        simb = "M";
+                        lst.Add(resul);
+                        break;
+                    case 14:
+                        simb = "N";
+                        lst.Add(resul);
+                        break;
+                    case 15:
+                        simb = "O";
+                        lst.Add(resul);
+                        break;
+                    case 16:
+                        simb = "P";
+                        lst.Add(resul);
+                        break;
+                    case 17:
+                        simb = "Q";
+                        lst.Add(resul);
+                        break;
+                    case 18:
+                        simb = "R";
+                        lst.Add(resul);
+                        break;
+                    case 19:
+                        simb = "S";
+                        lst.Add(resul);
+                        break;
+                    case 20:
+                        simb = "T";
+                        lst.Add(resul);
+                        break;
+                    case 21:
+                        simb = "U";
+                        lst.Add(resul);
+                        break;
+                    case 22:
+                        simb = "V";
+                        lst.Add(resul);
+                        break;
+                    case 23:
+                        simb = "W";
+                        lst.Add(resul);
+                        break;
+                    case 24:
+                        simb = "X";
+                        lst.Add(resul);
+                        break;
+                    case 25:
+                        simb = "Y";
+                        lst.Add(resul);
+                        break;
+                    case 26:
+                        simb = "Z";
+                        lst.Add(resul);
+                        break;
                 }
-                if (resul == 2 && !lst.Contains(2))
-                {
-                    simb = "B";
-                    lst.Add(2);
-                }
-                else if (resul == 2)
-                {
-                    resul = rd.Next(3, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(3, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 3 && !lst.Contains(3))
-                {
-                    simb = "C";
-                    lst.Add(3);
-                }
-                else if (resul == 3)
-                {
-                    resul = rd.Next(4, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(4, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 4 && !lst.Contains(4))
-                {
-                    simb = "D";
-                    lst.Add(4);
-                }
-                else if (resul == 4)
-                {
-                    resul = rd.Next(5, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(5, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 5 && !lst.Contains(5))
-                {
-                    simb = "E";
-                    lst.Add(5);
-                }
-                else if (resul == 5)
-                {
-                    resul = rd.Next(6, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(6, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 6 && !lst.Contains(6))
-                {
-                    simb = "F";
-                    lst.Add(6);
-                }
-                else if (resul == 6)
-                {
-                    resul = rd.Next(7, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(7, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 7 && !lst.Contains(7))
-                {
-                    simb = "G";
-                    lst.Add(7);
-                }
-                else if (resul == 7)
-                {
-                    resul = rd.Next(8, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(8, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 8 && !lst.Contains(8))
-                {
-                    simb = "H";
-                    lst.Add(8);
-                }
-                else if (resul == 8)
-                {
-                    resul = rd.Next(9, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(9, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 9 && !lst.Contains(9))
-                {
-                    simb = "I";
-                    lst.Add(9);
-                }
-                else if (resul == 9)
-                {
-                    resul = rd.Next(10, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(10, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 10 && !lst.Contains(10))
-                {
-                    simb = "J";
-                    lst.Add(10);
-                }
-                else if (resul == 10)
-                {
-                    resul = rd.Next(11, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(11, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 11 && !lst.Contains(11))
-                {
-                    simb = "K";
-                    lst.Add(11);
-                }
-                else if (resul == 11)
-                {
-                    resul = rd.Next(12, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(12, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 12 && !lst.Contains(12))
-                {
-                    simb = "L";
-                    lst.Add(12);
-                }
-                else if (resul == 12)
-                {
-                    resul = rd.Next(13, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(13, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 13 && !lst.Contains(13))
-                {
-                    simb = "M";
-                    lst.Add(13);
-                }
-                else if (resul == 13)
-                {
-                    resul = rd.Next(14, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(14, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 14 && !lst.Contains(14))
-                {
-                    simb = "N";
-                    lst.Add(14);
-                }
-                else if (resul == 14)
-                {
-                    resul = rd.Next(15, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(15, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 15 && !lst.Contains(15))
-                {
-                    simb = "O";
-                    lst.Add(15);
-                }
-                else if (resul == 15)
-                {
-                    resul = rd.Next(16, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(16, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 16 && !lst.Contains(16))
-                {
-                    simb = "P";
-                    lst.Add(16);
-                }
-                else if (resul == 16)
-                {
-                    resul = rd.Next(17, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(17, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 17 && !lst.Contains(17))
-                {
-                    simb = "Q";
-                    lst.Add(17);
-                }
-                else if (resul == 17)
-                {
-                    resul = rd.Next(18, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(18, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 18 && !lst.Contains(18))
-                {
-                    simb = "R";
-                    lst.Add(18);
-                }
-                else if (resul == 18)
-                {
-                    resul = rd.Next(19, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(19, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 19 && !lst.Contains(19))
-                {
-                    simb = "S";
-                    lst.Add(19);
-                }
-                else if (resul == 19)
-                {
-                    resul = rd.Next(20, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(20, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 20 && !lst.Contains(20))
-                {
-                    simb = "T";
-                    lst.Add(20);
-                }
-                else if (resul == 20)
-                {
-                    resul = rd.Next(21, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(21, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 21 && !lst.Contains(21))
-                {
-                    simb = "U";
-                    lst.Add(21);
-                }
-                else if (resul == 21)
-                {
-                    resul = rd.Next(22, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(22, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 22 && !lst.Contains(22))
-                {
-                    simb = "V";
-                    lst.Add(22);
-                }
-                else if (resul == 22)
-                {
-                    resul = rd.Next(23, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(23, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 23 && !lst.Contains(23))
-                {
-                    simb = "W";
-                    lst.Add(23);
-                }
-                else if (resul == 23)
-                {
-                    resul = rd.Next(24, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(24, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 24 && !lst.Contains(24))
-                {
-                    simb = "X";
-                    lst.Add(24);
-                }
-                else if (resul == 24)
-                {
-                    resul = rd.Next(25, 26);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (lst.Contains(resul))
-                            resul = rd.Next(25, 26);
-                        else
-                            break;
-                    }
-                }
-                if (resul == 25 && !lst.Contains(25))
-                {
-                    simb = "Y";
-                    lst.Add(25);
-                }
-                else if (resul == 25)
-                {
-                    resul = 26;
-                }
-                if (resul == 26 && !lst.Contains(26))
-                {
-                    simb = "Z";
-                    lst.Add(26);
-                }
-                if (!lst2.Contains(simb))
-                {
-                    txt[i].Text = simb;
-                    lst2.Add(simb);
-                }
-                else
-                    return "vorta";
+                txt[i].Text = simb;
             }
-            return "certo";
         }
         #endregion
     }
