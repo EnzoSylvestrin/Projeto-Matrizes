@@ -34,8 +34,10 @@
             this.matrizesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.corzinhaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.criptografiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,12 +59,13 @@
             this.matrizesToolStripMenuItem,
             this.SomaToolStripMenuItem,
             this.MultToolStripMenuItem,
+            this.corzinhaToolStripMenuItem,
+            this.criptografiaToolStripMenuItem,
             this.toolStripSeparator1,
             this.sairToolStripMenuItem});
             this.mnuMenu.Name = "mnuMenu";
             this.mnuMenu.Size = new System.Drawing.Size(50, 20);
             this.mnuMenu.Text = "Menu";
-            this.mnuMenu.Click += new System.EventHandler(this.mnuMenu_Click);
             // 
             // fórmulaToolStripMenuItem
             // 
@@ -92,6 +95,13 @@
             this.MultToolStripMenuItem.Text = "Multiplicação";
             this.MultToolStripMenuItem.Click += new System.EventHandler(this.MultToolStripMenuItem_Click);
             // 
+            // corzinhaToolStripMenuItem
+            // 
+            this.corzinhaToolStripMenuItem.Name = "corzinhaToolStripMenuItem";
+            this.corzinhaToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.corzinhaToolStripMenuItem.Text = "Corzinha";
+            this.corzinhaToolStripMenuItem.Click += new System.EventHandler(this.corzinhaToolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -103,6 +113,13 @@
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
+            // 
+            // criptografiaToolStripMenuItem
+            // 
+            this.criptografiaToolStripMenuItem.Name = "criptografiaToolStripMenuItem";
+            this.criptografiaToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.criptografiaToolStripMenuItem.Text = "Criptografia";
+            this.criptografiaToolStripMenuItem.Click += new System.EventHandler(this.criptografiaToolStripMenuItem_Click);
             // 
             // FrmMenu
             // 
@@ -133,5 +150,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MultToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem corzinhaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem criptografiaToolStripMenuItem;
     }
 }

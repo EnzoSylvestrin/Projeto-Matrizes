@@ -17,18 +17,18 @@ namespace matrix
     {
         #region audio
         //static CultureInfo ci = new CultureInfo("pt-BR");
-        static readonly CultureInfo ci = new CultureInfo("en-US");
-        static readonly SpeechRecognitionEngine sre =
-          new SpeechRecognitionEngine(ci);
+        //static readonly CultureInfo ci = new CultureInfo("en-US");
+        //static readonly SpeechRecognitionEngine sre =
+          //new SpeechRecognitionEngine(ci);
 
         public Form1()
         {
             InitializeComponent();
-            sre.SetInputToDefaultAudioDevice();
-            sre.SpeechRecognized += sre_SpeechRecognized;
-            Grammar g_GetCell = GetCell();
-            sre.LoadGrammarAsync(g_GetCell);
-            sre.RecognizeAsync(RecognizeMode.Multiple);
+            //sre.SetInputToDefaultAudioDevice();
+            //sre.SpeechRecognized += sre_SpeechRecognized;
+            //Grammar g_GetCell = GetCell();
+            //sre.LoadGrammarAsync(g_GetCell);
+            //sre.RecognizeAsync(RecognizeMode.Multiple);
         }
 
         static Grammar GetCell()
@@ -288,7 +288,7 @@ namespace matrix
         private void field_Click(Field field)
         {
             //if (me.Button == MouseButtons.Left)
-            System.Windows.Forms.MessageBox.Show(field.Name);
+            //System.Windows.Forms.MessageBox.Show(field.Name);
             string[] arr = txtColor.Text.Split(new char[] { ',' }, 3);
             field.BackColor = Color.FromArgb(int.Parse(arr[0]), int.Parse(arr[1]), int.Parse(arr[2]));
         }

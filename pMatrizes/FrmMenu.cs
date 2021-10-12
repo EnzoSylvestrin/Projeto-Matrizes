@@ -42,7 +42,6 @@ namespace WindowsFormsApplication1
             if (e.KeyCode == Keys.Escape)
             {
                 mnuMenu.ShowDropDown();
-                mnuMenu_Click(sender, e);
             }
             if (e.KeyCode == Keys.F)
             {
@@ -60,13 +59,15 @@ namespace WindowsFormsApplication1
             {
                 MultToolStripMenuItem_Click(sender, e);
             }
+            if (e.KeyCode == Keys.C)
+            {
+                corzinhaToolStripMenuItem_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.R)
+            {
+                criptografiaToolStripMenuItem_Click(sender, e);
+            }
         }
-
-        private void mnuMenu_Click(object sender, EventArgs e)
-        {
-            mnuMenu.Checked = true;
-        }
-
         private void SomaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
@@ -83,6 +84,22 @@ namespace WindowsFormsApplication1
             frmMult.MdiParent = this;
             frmMult.WindowState = FormWindowState.Maximized;
             frmMult.Show();
+        }
+
+        private void corzinhaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            matrix.Form1 form1 = new matrix.Form1();
+            form1.MdiParent = this;
+            form1.WindowState = FormWindowState.Maximized;
+            form1.Show();
+        }
+
+        private void criptografiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCripto frmCripto = new FrmCripto();
+            frmCripto.MdiParent = this;
+            frmCripto.WindowState = FormWindowState.Maximized;
+            frmCripto.Show();
         }
     }
 }

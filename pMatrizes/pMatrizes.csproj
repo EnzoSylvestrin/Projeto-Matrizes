@@ -72,6 +72,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmChave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChave.Designer.cs">
+      <DependentUpon>FrmChave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCripto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCripto.Designer.cs">
+      <DependentUpon>FrmCripto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmFormula.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +124,12 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChave.resx">
+      <DependentUpon>FrmChave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCripto.resx">
+      <DependentUpon>FrmCripto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFormula.resx">
       <DependentUpon>FrmFormula.cs</DependentUpon>
