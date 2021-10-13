@@ -473,7 +473,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(22, 127);
+            this.textBox8.Location = new System.Drawing.Point(20, 127);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(17, 20);
             this.textBox8.TabIndex = 61;
@@ -481,7 +481,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(46, 127);
+            this.textBox9.Location = new System.Drawing.Point(44, 127);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(17, 20);
             this.textBox9.TabIndex = 62;
@@ -489,7 +489,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(69, 127);
+            this.textBox10.Location = new System.Drawing.Point(67, 127);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(17, 20);
             this.textBox10.TabIndex = 63;
@@ -497,7 +497,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(96, 127);
+            this.textBox11.Location = new System.Drawing.Point(94, 127);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(17, 20);
             this.textBox11.TabIndex = 64;
@@ -505,7 +505,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(119, 127);
+            this.textBox12.Location = new System.Drawing.Point(117, 127);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(17, 20);
             this.textBox12.TabIndex = 65;
@@ -513,7 +513,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(146, 127);
+            this.textBox13.Location = new System.Drawing.Point(144, 127);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(17, 20);
             this.textBox13.TabIndex = 66;
@@ -521,7 +521,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox14
             // 
-            this.textBox14.Location = new System.Drawing.Point(169, 127);
+            this.textBox14.Location = new System.Drawing.Point(167, 127);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(17, 20);
             this.textBox14.TabIndex = 67;
@@ -529,7 +529,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox15
             // 
-            this.textBox15.Location = new System.Drawing.Point(193, 127);
+            this.textBox15.Location = new System.Drawing.Point(191, 127);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(17, 20);
             this.textBox15.TabIndex = 68;
@@ -537,7 +537,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox16
             // 
-            this.textBox16.Location = new System.Drawing.Point(216, 127);
+            this.textBox16.Location = new System.Drawing.Point(214, 127);
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(17, 20);
             this.textBox16.TabIndex = 69;
@@ -545,7 +545,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox17
             // 
-            this.textBox17.Location = new System.Drawing.Point(239, 127);
+            this.textBox17.Location = new System.Drawing.Point(237, 127);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(17, 20);
             this.textBox17.TabIndex = 70;
@@ -553,7 +553,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox18
             // 
-            this.textBox18.Location = new System.Drawing.Point(262, 127);
+            this.textBox18.Location = new System.Drawing.Point(260, 127);
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(17, 20);
             this.textBox18.TabIndex = 71;
@@ -561,7 +561,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox19
             // 
-            this.textBox19.Location = new System.Drawing.Point(283, 127);
+            this.textBox19.Location = new System.Drawing.Point(281, 127);
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(17, 20);
             this.textBox19.TabIndex = 72;
@@ -569,7 +569,7 @@ namespace WindowsFormsApplication1
             // 
             // textBox20
             // 
-            this.textBox20.Location = new System.Drawing.Point(306, 127);
+            this.textBox20.Location = new System.Drawing.Point(304, 127);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(17, 20);
             this.textBox20.TabIndex = 73;

@@ -970,7 +970,7 @@ namespace WindowsFormsApplication1
                 }
             }
             lblPalavra.Text = "";
-            lblIgual2.Location = new Point(grpzi.X + 5, lblIgual.Location.Y);
+            lblIgual2.Location = new Point(grpzi.X + 5, lblIgual.Location.Y + 10);
 
             for (int i = 0; i < int.Parse(i1); i++)
             {
