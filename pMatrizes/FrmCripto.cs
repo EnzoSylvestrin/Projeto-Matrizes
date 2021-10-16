@@ -173,14 +173,14 @@ namespace WindowsFormsApplication1
                     }
                     foreach (char c in txtPalavra.Text)
                     {
-                        if (int.TryParse(c.ToString(), out valor))
+                        if (int.TryParse(c.ToString(), out valor) || c == ' ')
                         {
                             y = true;
                         }
                     }
                     if (y)
                     {
-                        errinho.SetError(txtPalavra, "Coloque apenas letras!!");
+                        errinho.SetError(txtPalavra, "Coloque apenas letras e sem espaços em branco!!");
                         x = true;
                     }                  
                     if (x)
@@ -1216,6 +1216,7 @@ namespace WindowsFormsApplication1
         private void txtPalavra_Leave(object sender, EventArgs e)
         {
             txtPalavra.Text = txtPalavra.Text.ToUpper();
+            txtPalavra.Text = txtPalavra.Text.Trim();
         }
         #endregion
 
