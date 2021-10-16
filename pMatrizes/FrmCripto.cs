@@ -58,21 +58,6 @@ namespace WindowsFormsApplication1
         private void FrmCripto_Load(object sender, EventArgs e)
         {
             int cont = 0;
-            FrmChave chave = new FrmChave();
-            chave.ShowDialog();
-
-            foreach (TextBox txtz in chave.Controls.OfType<TextBox>())
-            {
-                listinha.Add(txtz.Text.ToUpper());
-                cont++;
-            }
-            cont = 0;
-            foreach (TextBox txt in grpChave.Controls.OfType<TextBox>())
-            {
-                txt.BackColor = Color.White;
-                txt.Text = listinha[cont];
-                cont++;
-            }
 
             lblSinal.Visible = false;
             lblIgual.Visible = false;
@@ -96,6 +81,22 @@ namespace WindowsFormsApplication1
             txtPalavra.MaxLength = 9;
 
             this.WindowState = FormWindowState.Maximized;
+
+            FrmChave chave = new FrmChave();
+            chave.ShowDialog();
+
+            foreach (TextBox txtz in chave.Controls.OfType<TextBox>())
+            {
+                listinha.Add(txtz.Text.ToUpper());
+                cont++;
+            }
+            cont = 0;
+            foreach (TextBox txt in grpChave.Controls.OfType<TextBox>())
+            {
+                txt.BackColor = Color.White;
+                txt.Text = listinha[cont];
+                cont++;
+            }
 
             mskTabela.Focus();
         }
