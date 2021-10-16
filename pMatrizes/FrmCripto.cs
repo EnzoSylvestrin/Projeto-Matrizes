@@ -217,6 +217,7 @@ namespace WindowsFormsApplication1
                     a = 20;
                     conte = 0;
                     bool foi = false;
+                    int ale2 = 0;
                     txtForm_Leave();
                     lblEx.Visible = false;
                     errinho.Clear();
@@ -468,15 +469,59 @@ namespace WindowsFormsApplication1
                                                 }
                                                 else
                                                 {
-                                                    if (j + 1 == r)
+                                                    if ((j + 1) % 2 == 1)
                                                     {
-                                                        novo.Text = n.ToString();
+                                                        if (j + 1 == r)
+                                                        {
+                                                            ale2 = rd.Next(1, 3);
+                                                            if (lstSoma.Sum() == 0)
+                                                            {
+                                                                if (ale2 == 1)
+                                                                {
+                                                                    novo.Text = Convert.ToString(n / 2);
+                                                                    lstSoma.Add(n / 2);
+                                                                }
+                                                                else
+                                                                {
+                                                                    novo.Text = Convert.ToString(n / 4);
+                                                                    lstSoma.Add(n / 4);
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                novo.Text = Convert.ToString(lst[i] - lstSoma.Sum());
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            novo.Text = "0";
+                                                        }
                                                     }
                                                     else
                                                     {
-                                                        novo.Text = "0";
-                                                    }
-                                                    
+                                                        if (ale2 == 1 && !foi)
+                                                        {
+                                                            novo.Text = Convert.ToString(n / 4);
+                                                            lstSoma.Add(n / 2);
+                                                            foi = true;
+                                                        }
+                                                        else if (ale2 == 2 && !foi)
+                                                        {
+                                                            novo.Text = Convert.ToString(1.5 * n / 4);
+                                                            lstSoma.Add(3 * n / 4);
+                                                            foi = true;
+                                                        }
+                                                        else if (ale2 == 0 && r == int.Parse(variavel[1]) - 1 && !foi)
+                                                        {
+                                                            novo.Text = Convert.ToString(n / 8);
+                                                            lstSoma.Add(n / 4);
+                                                            foi = true;
+                                                        }
+                                                        else
+                                                        {
+                                                            novo.Text = "0";
+                                                        }
+                                                    }                                                                                                  
                                                 }
                                             }
                                             else
