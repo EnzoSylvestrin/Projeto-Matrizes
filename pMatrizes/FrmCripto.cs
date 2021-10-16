@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace WindowsFormsApplication1
 {
@@ -20,21 +21,27 @@ namespace WindowsFormsApplication1
         char soma = '+';
         char div = '/';
         MatchCollection collect;
+        Random rd = new Random();
 
-        int resul1 = 0;
+        float resul1 = 0;
         int ia = 0;
         int conte = 0;
-        int[] result = { 0, 0, 0 };
-        int[] traco = { 0, 0, 0 };
-        int[] tracoSec = { 0, 0, 0 };
+        float[] result = { 0, 0, 0 };
+        float[] traco = { 0, 0, 0 };
+        float[] tracoSec = { 0, 0, 0 };
         int[] resu;
         bool x = false;
         int click = -1;
         int a = 20;
+        float n = 0;
+        int r = 0;
+        int ale = 0;
         string j1;
         string i1;
         string[] variavel;
         List<string> listinha = new List<string>();
+        List<float> lstSoma = new List<float>();
+        List<int> lst = new List<int>();
 
         Point ponto;
         Point ponti;
@@ -57,7 +64,9 @@ namespace WindowsFormsApplication1
             foreach (TextBox txtz in chave.Controls.OfType<TextBox>())
             {
                 listinha.Add(txtz.Text.ToUpper());
+                cont++;
             }
+            cont = 0;
             foreach (TextBox txt in grpChave.Controls.OfType<TextBox>())
             {
                 txt.BackColor = Color.White;
@@ -84,6 +93,7 @@ namespace WindowsFormsApplication1
             lblTr3.Visible = false;
 
             txtForm.MaxLength = 8;
+            txtPalavra.MaxLength = 9;
 
             this.WindowState = FormWindowState.Maximized;
 
@@ -123,7 +133,7 @@ namespace WindowsFormsApplication1
         #endregion
 
         #region consistir
-        public bool consistir(string ee)
+        public bool consistir(bool pl, string ee = null)
         {
             try
             {
@@ -152,6 +162,34 @@ namespace WindowsFormsApplication1
                     else
                         return true;
                 }
+                else if (pl)
+                {
+                    int valor;
+                    bool y = false;
+                    if (string.IsNullOrEmpty(txtPalavra.Text))
+                    {
+                        errinho.SetError(txtPalavra, "Preencha o campo!!");
+                        x = true;
+                    }
+                    foreach (char c in txtPalavra.Text)
+                    {
+                        if (int.TryParse(c.ToString(), out valor))
+                        {
+                            y = true;
+                        }
+                    }
+                    if (y)
+                    {
+                        errinho.SetError(txtPalavra, "Coloque apenas letras!!");
+                        x = true;
+                    }                  
+                    if (x)
+                    {
+                        return false;
+                    }
+                    else
+                        return true;
+                }
                 else return true;
             }
             catch (Exception ex) { throw ex; }
@@ -170,14 +208,15 @@ namespace WindowsFormsApplication1
                 Novo(sender, e, click);
         }
 
-        public void Novo(object sender, EventArgs e, int cont, string ee = null)
+        public void Novo(object sender, EventArgs e, int cont, string ee = null, bool pl = false)
         {
             try
             {
-                if (consistir(ee))
+                if (consistir(false, ee))
                 {
                     a = 20;
                     conte = 0;
+                    bool foi = false;
                     txtForm_Leave();
                     lblEx.Visible = false;
                     errinho.Clear();
@@ -205,7 +244,6 @@ namespace WindowsFormsApplication1
                             tracoSec[1] = 0;
                             result[1] = 0;
                         }
-
                     }
                     if (cont == 0)
                     {
@@ -277,6 +315,14 @@ namespace WindowsFormsApplication1
                     }
                     for (int i = 0; i < int.Parse(variavel[0]); i++)
                     {
+                        foi = false;
+                        lstSoma.Clear();
+                        ia = rd.Next(1, int.Parse(variavel[1]) + 1);
+                        r = rd.Next(1, (int.Parse(variavel[1]) / 2) + 2);
+                        while (r % 2 == 0)
+                        {
+                            r = rd.Next(1, (int.Parse(variavel[1]) / 2) + 2);
+                        }
                         for (int j = 0; j < int.Parse(variavel[1]); j++)
                         {
                             if (ee == null)
@@ -331,7 +377,126 @@ namespace WindowsFormsApplication1
                             }
                             if (ee == null)
                             {
-                                novo.Text = returnName(createIntList(i + 1, j + 1, res), listinha);
+                                if (!pl)
+                                {
+                                    novo.Text = returnName(createIntList(i + 1, j + 1, res), listinha);
+                                }
+                                else
+                                {
+                                    if (cont == 0)
+                                    {
+                                        if (lst[i] == 1)
+                                        {
+                                            if (lstSoma.Sum() != 1)
+                                            {
+                                                if (j + 1 == r)
+                                                {
+                                                    novo.Text = "1";
+                                                    lstSoma.Add(1);
+                                                }
+                                                else
+                                                {
+                                                    novo.Text = "0";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                novo.Text = "0";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            n = lst[i];
+                                            
+                                            if (lstSoma.Sum() != n)
+                                            {
+                                                if (n % 2 == 0)
+                                                {
+                                                    if ((j + 1) % 2 == 1)
+                                                    {
+                                                        if ((j + 1) == r)
+                                                        {
+                                                            ale = rd.Next(1, 3);
+                                                            if (lstSoma.Sum() == 0)
+                                                            {
+                                                                if (ale == 1)
+                                                                {
+                                                                    novo.Text = Convert.ToString(n / 2);
+                                                                    lstSoma.Add(n / 2);
+                                                                }
+                                                                else
+                                                                {
+                                                                    novo.Text = Convert.ToString(n / 4);
+                                                                    lstSoma.Add(n / 4);
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                novo.Text = Convert.ToString(lst[i] - lstSoma.Sum());
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            novo.Text = "0";
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (ale == 1 && !foi)
+                                                        {
+                                                            novo.Text = Convert.ToString(n / 4);
+                                                            lstSoma.Add(n / 2);
+                                                            foi = true;
+                                                        }
+                                                        else if (ale == 2 && !foi)
+                                                        {
+                                                            novo.Text = Convert.ToString(1.5 * n / 4);
+                                                            lstSoma.Add(3 * n / 4);
+                                                            foi = true;
+                                                        }
+                                                        else if (ale == 0 && r == int.Parse(variavel[1]) - 1 && !foi)
+                                                        {
+                                                            novo.Text = Convert.ToString(n / 8);
+                                                            lstSoma.Add(n / 4);
+                                                            foi = true;
+                                                        }
+                                                        else
+                                                        {
+                                                            novo.Text = "0";
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (j + 1 == r)
+                                                    {
+                                                        novo.Text = n.ToString();
+                                                    }
+                                                    else
+                                                    {
+                                                        novo.Text = "0";
+                                                    }
+                                                    
+                                                }
+                                            }
+                                            else
+                                            {
+                                                novo.Text = "0";
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if ((i + 1) % 2 == 0)
+                                        {
+                                            novo.Text = "2";
+                                        }
+                                        else
+                                        {
+                                            novo.Text = "1";
+                                        }
+                                    }
+                                }
                                 if (cont == 0)
                                 {
                                     result[0] += int.Parse(returnName(createIntList(i + 1, j + 1, res), listinha));
@@ -465,6 +630,9 @@ namespace WindowsFormsApplication1
                         chxAlteração.Visible = true;
                         mskTabela.Text = j1.ToString() + "1";
                         mskTabela.Enabled = false;
+                        txtPalavra.Visible = false;
+                        label28.Visible = false;
+                        btnGerarPl.Visible = false;
                         cont++;
                     }
                     else
@@ -674,6 +842,9 @@ namespace WindowsFormsApplication1
             btnResOp.Visible = false;
             btnResOp.Enabled = true;
             btnMostPalavra.Visible = false;
+            txtPalavra.Visible = true;
+            label28.Visible = true;
+            btnGerarPl.Visible = true;
             this.Controls.Remove(grp);
             this.Controls.Remove(grp2);
             this.Controls.Remove(grp3);
@@ -691,6 +862,7 @@ namespace WindowsFormsApplication1
             x = false;
             a = 20;
             click = -1;
+            lst.Clear();
 
 
             lblEx.Visible = true;
@@ -808,15 +980,15 @@ namespace WindowsFormsApplication1
                             Label lble = (Label)lbl[0];
                             Control[] lbl2 = grp.Controls.Find(Convert.ToString(i + 1) + "." + Convert.ToString(t + 1), true);
                             Label lble2 = (Label)lbl2[0];
-                            resul1 += int.Parse(lble.Text) * int.Parse(lble2.Text);
-                            result[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                            resul1 += float.Parse(lble.Text) * float.Parse(lble2.Text);
+                            result[2] += float.Parse(lble.Text) * float.Parse(lble2.Text);
                             if (i == j)
                             {
-                                traco[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                                traco[2] += float.Parse(lble.Text) * float.Parse(lble2.Text);
                             }
                             if (i + 1 + j + 1 == int.Parse(variavel[1]) + 1)
                             {
-                                tracoSec[2] += int.Parse(lble.Text) * int.Parse(lble2.Text);
+                                tracoSec[2] += float.Parse(lble.Text) * float.Parse(lble2.Text);
                             }
                         }
                         if ((resul1 > 26 || resul1 < 1) && !msg)
@@ -957,35 +1129,92 @@ namespace WindowsFormsApplication1
         #region mostrar palavra
         private void btnMostPalavra_Click(object sender, EventArgs e)
         {
-            if (listinha.Contains(""))
+            try
             {
-                if(MessageBox.Show("Você ainda não preencheu todos os campos da Chave \n \n Deseja preencher agora?", "Alerta...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                if (listinha.Contains(""))
                 {
-                    btnAltChave_Click(sender, e);
-                    return;
+                    if (MessageBox.Show("Você ainda não preencheu todos os campos da Chave \n \n Deseja preencher agora?", "Alerta...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                    {
+                        btnAltChave_Click(sender, e);
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                lblPalavra.Text = "";
+                lblIgual2.Location = new Point(grpzi.X + 5, lblIgual.Location.Y + 10);
+
+                for (int i = 0; i < int.Parse(i1); i++)
+                {
+                    Control[] lbl = grp3.Controls.Find(Convert.ToString(i + 1) + "." + "1", true);
+                    Label lble = (Label)lbl[0];
+                    if (int.Parse(lble.Text) <= 26 && int.Parse(lble.Text) > 0)
+                        lblPalavra.Text += listinha[25 - (int.Parse(lble.Text) - 1)];
+                }
+                if (lblPalavra.Text == "")
+                {
+                    MessageBox.Show("Não há numeros entre 1 e 26", "erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                lblPalavra.Location = new Point(lblIgual2.Location.X + 40, lblIgual2.Location.Y);
+                lblPalavra.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro durante o processo, erro: " + ex.Message, "erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region leave
+        private void txtPalavra_Leave(object sender, EventArgs e)
+        {
+            txtPalavra.Text = txtPalavra.Text.ToUpper();
+        }
+        #endregion
+
+        #region Gerar pela palavra
+        private void btnGerarPl_Click(object sender, EventArgs e)
+        {
+            errinho.Clear();
+            if (consistir(true, "ee"))
+            {
+                if (listinha.Contains(""))
+                {
+                    if (MessageBox.Show("Você ainda não preencheu todos os campos da Chave \n \n Deseja preencher agora?", "Alerta...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                    {
+                        btnAltChave_Click(sender, e);
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 else
                 {
-                    return;
-                }
-            }
-            lblPalavra.Text = "";
-            lblIgual2.Location = new Point(grpzi.X + 5, lblIgual.Location.Y + 10);
+                    int tamanho = txtPalavra.TextLength;
+                    mskTabela.Text = tamanho.ToString() + tamanho.ToString();
+                    txtForm.Text = "1";
+                    foreach (char c in txtPalavra.Text)
+                    {
+                        lst.Add(25 - (listinha.IndexOf(c.ToString()) - 1));
+                    }
+                    Novo(sender, e, 0, null, true);
 
-            for (int i = 0; i < int.Parse(i1); i++)
-            {
-                Control[] lbl = grp3.Controls.Find(Convert.ToString(i + 1) + "." + "1", true);
-                Label lble = (Label)lbl[0];
-                if (int.Parse(lble.Text) <= 26 && int.Parse(lble.Text) > 0)
-                    lblPalavra.Text += listinha[25 - (int.Parse(lble.Text) - 1)];
+                    mskTabela.Text = tamanho.ToString() + "1";
+
+                    Novo(sender, e, 1, null, true);
+
+                    btnResOp_Click(sender, e);
+
+                    btnMostPalavra_Click(sender, e);
+                }
+
             }
-            if (lblPalavra.Text == "")
-            {
-                MessageBox.Show("Não há numeros entre 1 e 26", "erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            lblPalavra.Location = new Point(lblIgual2.Location.X + 40, lblIgual2.Location.Y);
-            lblPalavra.Visible = true;
+            #endregion
+
         }
-        #endregion
     }
 }

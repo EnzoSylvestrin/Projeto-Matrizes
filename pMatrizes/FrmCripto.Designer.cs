@@ -120,6 +120,9 @@ namespace WindowsFormsApplication1
             this.label2 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.lbl = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txtPalavra = new System.Windows.Forms.TextBox();
+            this.btnGerarPl = new System.Windows.Forms.Button();
             this.grpFormula.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errinho)).BeginInit();
             this.grpChave.SuspendLayout();
@@ -127,7 +130,7 @@ namespace WindowsFormsApplication1
             // 
             // btnAltChave
             // 
-            this.btnAltChave.Location = new System.Drawing.Point(913, 151);
+            this.btnAltChave.Location = new System.Drawing.Point(929, 151);
             this.btnAltChave.Name = "btnAltChave";
             this.btnAltChave.Size = new System.Drawing.Size(91, 27);
             this.btnAltChave.TabIndex = 0;
@@ -508,7 +511,8 @@ namespace WindowsFormsApplication1
             this.grpChave.Controls.Add(this.label2);
             this.grpChave.Controls.Add(this.label27);
             this.grpChave.Enabled = false;
-            this.grpChave.Location = new System.Drawing.Point(689, 14);
+            this.grpChave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grpChave.Location = new System.Drawing.Point(705, 14);
             this.grpChave.Name = "grpChave";
             this.grpChave.Size = new System.Drawing.Size(315, 122);
             this.grpChave.TabIndex = 119;
@@ -959,17 +963,48 @@ namespace WindowsFormsApplication1
             // lbl
             // 
             this.lbl.AutoSize = true;
-            this.lbl.Location = new System.Drawing.Point(645, 71);
+            this.lbl.Location = new System.Drawing.Point(661, 71);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(41, 13);
             this.lbl.TabIndex = 120;
             this.lbl.Text = "Chave:";
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(757, 216);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(171, 13);
+            this.label28.TabIndex = 121;
+            this.label28.Text = "Digite uma palavra de até 9 letras: ";
+            // 
+            // txtPalavra
+            // 
+            this.txtPalavra.Location = new System.Drawing.Point(925, 213);
+            this.txtPalavra.Name = "txtPalavra";
+            this.txtPalavra.Size = new System.Drawing.Size(95, 20);
+            this.txtPalavra.TabIndex = 122;
+            this.txtPalavra.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
+            this.txtPalavra.Leave += new System.EventHandler(this.txtPalavra_Leave);
+            // 
+            // btnGerarPl
+            // 
+            this.btnGerarPl.Location = new System.Drawing.Point(940, 248);
+            this.btnGerarPl.Name = "btnGerarPl";
+            this.btnGerarPl.Size = new System.Drawing.Size(80, 23);
+            this.btnGerarPl.TabIndex = 123;
+            this.btnGerarPl.Text = "Gerar Matriz";
+            this.btnGerarPl.UseVisualStyleBackColor = true;
+            this.btnGerarPl.Click += new System.EventHandler(this.btnGerarPl_Click);
+            // 
             // FrmCripto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1022, 450);
+            this.ClientSize = new System.Drawing.Size(1068, 450);
+            this.Controls.Add(this.btnGerarPl);
+            this.Controls.Add(this.txtPalavra);
+            this.Controls.Add(this.label28);
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.grpChave);
             this.Controls.Add(this.lblPalavra);
@@ -1106,5 +1141,8 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label lbl;
+        private System.Windows.Forms.TextBox txtPalavra;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button btnGerarPl;
     }
 }
