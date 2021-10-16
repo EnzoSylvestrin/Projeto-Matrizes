@@ -406,6 +406,11 @@ namespace WindowsFormsApplication1
                                                 novo.Text = "0";
                                             }
                                         }
+                                        else if (int.Parse(variavel[0]) == 1 && int.Parse(variavel[1]) == 1)
+                                        {
+                                            n = lst[i];
+                                            novo.Text = n.ToString();
+                                        }
                                         else
                                         {
                                             n = lst[i];
