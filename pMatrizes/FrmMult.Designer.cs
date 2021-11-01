@@ -53,6 +53,7 @@
             this.lblSomaE = new System.Windows.Forms.Label();
             this.lblEx = new System.Windows.Forms.Label();
             this.grpFormula = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.mskTabela = new System.Windows.Forms.MaskedTextBox();
             this.lblTabela = new System.Windows.Forms.Label();
@@ -62,7 +63,7 @@
             this.btnT1 = new System.Windows.Forms.Button();
             this.btnT2 = new System.Windows.Forms.Button();
             this.btnT3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnDeterminante = new System.Windows.Forms.Button();
             this.grpFormula.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errinho)).BeginInit();
             this.SuspendLayout();
@@ -284,6 +285,15 @@
             this.grpFormula.TabIndex = 64;
             this.grpFormula.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(127, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 51;
+            this.label1.Text = "Padrão:";
+            // 
             // btnLimpar
             // 
             this.btnLimpar.Location = new System.Drawing.Point(65, 67);
@@ -365,20 +375,22 @@
             this.btnT3.Click += new System.EventHandler(this.btnT3_Click);
             this.btnT3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Teclas);
             // 
-            // label1
+            // btnDeterminante
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(127, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 51;
-            this.label1.Text = "Padrão:";
+            this.btnDeterminante.Location = new System.Drawing.Point(426, 132);
+            this.btnDeterminante.Name = "btnDeterminante";
+            this.btnDeterminante.Size = new System.Drawing.Size(82, 25);
+            this.btnDeterminante.TabIndex = 52;
+            this.btnDeterminante.Text = "Determinante";
+            this.btnDeterminante.UseVisualStyleBackColor = true;
+            this.btnDeterminante.Click += new System.EventHandler(this.btnDeterminante_Click);
             // 
             // FrmMult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 456);
+            this.Controls.Add(this.btnDeterminante);
             this.Controls.Add(this.btnT3);
             this.Controls.Add(this.btnT2);
             this.Controls.Add(this.btnT1);
@@ -453,5 +465,6 @@
         private System.Windows.Forms.Button btnT1;
         private System.Windows.Forms.Button btnT3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnDeterminante;
     }
 }

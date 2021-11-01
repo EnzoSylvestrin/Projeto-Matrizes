@@ -562,6 +562,7 @@ namespace WindowsFormsApplication1
             btnT1.Visible = false;
             btnT2.Visible = false;
             btnT3.Visible = false;
+            btnDeterminante.Visible = false;
             btnResOp.Visible = false;
             lblTrSec.Visible = false;
             lblSomaE.Visible = false;
@@ -627,6 +628,7 @@ namespace WindowsFormsApplication1
             btnGerar.Enabled = true;
             btnResOp.Visible = false;
             btnResOp.Enabled = true;
+            btnDeterminante.Visible = false;
             this.Controls.Remove(grp);
             this.Controls.Remove(grp2);
             this.Controls.Remove(grp3);
@@ -849,6 +851,7 @@ namespace WindowsFormsApplication1
                     btnT3.Focus();
                 }
                 txtForm.Focus();
+                btnDeterminante.Visible = true;
             }
             catch (Exception ex)
             {
@@ -989,6 +992,82 @@ namespace WindowsFormsApplication1
             }
 
         }
-        #endregion        
+        #endregion
+
+        #region Determinante
+        private void btnDeterminante_Click(object sender, EventArgs e)
+        {
+            if (int.Parse(i1) != int.Parse(variavel[1]))
+            {
+                MessageBox.Show("Não é possivel realizar o calculo de uma matriz não quadrada", "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                if (int.Parse(i1) == 1 && int.Parse(variavel[1]) == 1)
+                {
+                    Control[] lb = grp3.Controls.Find(1 + "." + 1, true);
+                    Label lbz = (Label)lb[0];
+                    MessageBox.Show("O determinante é: " + lbz.Text, "Determinante...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (int.Parse(i1) == 2 && int.Parse(variavel[1]) == 2)
+                {
+                    List<int> tracos = new List<int>();
+                    for (int i = 1; i < 3; i++)
+                    {
+                        Control[] lb = grp3.Controls.Find(i.ToString() + "." + i.ToString(), true);
+                        tracos.Add(int.Parse(lb[0].Text));
+                    }
+                    int traco1 = tracos[0] * tracos[1];
+                    tracos.Clear();
+                    for (int i = 0; i < 2; i++)
+                    {
+                        int val = 2;
+                        Control[] lb = grp3.Controls.Find(Convert.ToString(val - (i + 1) + i * 2) + "." + Convert.ToString(val - i), true);
+                        tracos.Add(int.Parse(lb[0].Text));
+                    }
+                    int traco2 = tracos[0] * tracos[1];
+                    MessageBox.Show("O determinante é: " + Convert.ToString(traco1 - traco2), "Determinante...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (int.Parse(i1) == 3 && int.Parse(variavel[1]) == 3)
+                {
+                    int[] trs = { 1, 1, 1, 1, 1, 1 };
+                    int cont = 0;
+                    int deter = 0;
+                    int[] matriz = new int[15];
+                    foreach (Label lb in grp3.Controls)
+                    {
+                        if (cont == 3 || cont == 8)
+                            cont += 2;
+                        matriz[cont] = (int.Parse(lb.Text));
+                        if (cont != 2 && cont != 7 && cont != 12)
+                            matriz[cont + 3] = int.Parse(lb.Text);
+                        cont++;
+                    }
+                    for (int t = 0; t < 6; t++)
+                    {
+                        for (int c = 0; c < 3; c++)
+                        {
+                            if (t < 3)
+                                trs[t] *= matriz[(c * 6) + t];
+                            else
+                                trs[t] *= matriz[(c * 4) + (t - 1)];
+                        }
+                        if (t < 3)
+                            deter += trs[t];
+                        else
+                            deter -= trs[t];
+                    }
+                    MessageBox.Show("O determinante é: " + deter.ToString(), "Determinante...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("O calculo para matrizes maiores que 3 ainda está em desenvolvimento", "Erro...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+        #endregion
     }
 }
