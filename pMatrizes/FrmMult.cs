@@ -1059,7 +1059,76 @@ namespace WindowsFormsApplication1
                             deter -= trs[t];
                     }
                     MessageBox.Show("O determinante é: " + deter.ToString(), "Determinante...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (int.Parse(i1) == 4 && int.Parse(variavel[1]) == 4)
+                {
+                    // formula é: a11.c11 + a21.c21 + a31.c31 + a41.c41
+                    // cij = (-1)^i+j . Dij
+                    int cont = 0;
+                    int[] trs = { 1, 1, 1, 1, 1, 1 };
+                    int[] deter = new int[4];
+                    int deterall = 0;
+                    int[] c = new int[4];
+                    int[,] matriz = new int[15, 4];
+                    int[] a = new int[4];
 
+                    for (int t = 0; t < 4; t++)
+                    {
+                        cont = 0;
+                        for (int k = 0; k < 6; k++)
+                        {
+                            trs[k] = 1;
+                        }
+                        foreach (Label lb in grp3.Controls)
+                        {
+                            string[] i = lb.Name.Split(new char[] { '.' });
+                            if (i[1] == "1")
+                            {
+                                if (t == 0)
+                                {
+                                    a[int.Parse(i[0]) - 1] = int.Parse(lb.Text);
+                                }
+                                continue;
+                            }
+                            if (i[0].IndexOf(Convert.ToString(t + 1)) != -1)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                if (cont == 3 || cont == 8)
+                                    cont += 2;
+                                matriz[cont, t] = (int.Parse(lb.Text));
+                                if (cont != 2 && cont != 7 && cont != 12)
+                                    matriz[cont + 3, t] = int.Parse(lb.Text);
+                                cont++;
+                            }
+                        }
+                        for (int u = 0; u < 6; u++)
+                        {
+                            for (int l = 0; l < 3; l++)
+                            {
+                                if (u < 3)
+                                    trs[u] *= matriz[(l * 6) + u, t];
+                                else
+                                    trs[u] *= matriz[(l * 4) + (u - 1), t];
+                            }
+                            if (u < 3)
+                                deter[t] += trs[u];
+                            else
+                                deter[t] -= trs[u];
+                        }
+                        if (t % 2 == 0)
+                        {
+                            c[t] = deter[t];
+                        }
+                        else
+                        {
+                            c[t] = deter[t] * -1;
+                        }
+                    }
+                    deterall = (a[0] * c[0]) + (a[1] * c[1]) + (a[2] * c[2]) + (a[3] * c[3]);
+                    MessageBox.Show("O determinante é: " + deterall.ToString(), "Determinante...", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
