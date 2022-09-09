@@ -3,8 +3,6 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/EnzoSylvestrin/Projeto-Matrizes?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/EnzoSylvestrin/Projeto-Matrizes?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/EnzoSylvestrin/Projeto-Matrizes?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/EnzoSylvestrin/Projeto-Matrizes?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/EnzoSylvestrin/Projeto-Matrizes?style=for-the-badge)
 
 <img src="exemplo-img.png" alt="Imagem de uma das telas do projeto">
 
